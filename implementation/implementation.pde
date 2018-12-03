@@ -92,7 +92,6 @@ void draw()
 
   continueButtons[0].display();
 
-
   if (continueButtons[0].isPressed == true) // if the button in the main menu is pressed, then the video will start
   {
     continueWithSimulation(fireAlarmMovie, 1);
@@ -106,7 +105,7 @@ void draw()
     } else if (optionButtons[1].isPressed || optionButtons[2].isPressed || optionButtons[3].isPressed)
     {
       showExplanation();
-      showOptionsForCall();
+      // showOptionsForCall();
     }
   }
 
@@ -114,7 +113,7 @@ void draw()
   {
     println("the continue button 2 has been pressed");
     showOptionsForFireExtinguishers();
-    if (optionButtons[0].isPressed)
+    if (optionButtons[4].isPressed)
     {
       continueWithSimulation(findFireExtinguishersMovie, 3);
     } else if (optionButtons[1].isPressed || optionButtons[2].isPressed || optionButtons[3].isPressed)
@@ -127,7 +126,7 @@ void draw()
   if (continueButtons[3].isPressed == true)
   {
     showOptionsForExitPath();
-    if (optionButtons[0].isPressed)
+    if (optionButtons[8].isPressed)
     {
       continueWithSimulation(getOutOfBuildingMovie, 4);
     } else if (optionButtons[1].isPressed || optionButtons[2].isPressed || optionButtons[3].isPressed)
@@ -149,6 +148,11 @@ void continueWithSimulation(Movie movie, int buttonNumber)
   {
     // println(movie + " Video finished");
 
+
+    if(buttonNumber == 3)
+    {
+      showOptionsForFireExtinguishers();
+    }
 
     if (buttonNumber == 4)
     {
