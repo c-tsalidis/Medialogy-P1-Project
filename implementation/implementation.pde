@@ -19,7 +19,7 @@ boolean [] showScene = new boolean[numberOfScenes];
 int numberOfcontinueButtons = 10;
 Button[] continueButtons = new Button[numberOfcontinueButtons];
 
-int numberOfOptions = 4;
+int numberOfOptions = 16;
 Button[] optionButtons = new Button[numberOfOptions];
 
 
@@ -63,6 +63,21 @@ void setup()
   optionButtons[1] = new Button(width / 2, 200, 300, 200, "Option 2", 32, 0, 0, 255, option2Im);
   optionButtons[2] = new Button(width / 2, 400, 300, 200, "Option 3", 32, 0, 0, 255, option3Im);
   optionButtons[3] = new Button(width / 2, 600, 300, 200, "Option 4", 32, 0, 0, 255, option4Im);
+
+  optionButtons[4] = new Button(width / 2, 0, 300, 200, "Option 1", 32, 0, 0, 255, option1Im);
+  optionButtons[5] = new Button(width / 2, 200, 300, 200, "Option 2", 32, 0, 0, 255, option2Im);
+  optionButtons[6] = new Button(width / 2, 400, 300, 200, "Option 3", 32, 0, 0, 255, option3Im);
+  optionButtons[7] = new Button(width / 2, 600, 300, 200, "Option 4", 32, 0, 0, 255, option4Im);
+
+  optionButtons[8] = new Button(width / 2, 0, 300, 200, "Option 1", 32, 0, 0, 255, option1Im);
+  optionButtons[9] = new Button(width / 2, 200, 300, 200, "Option 2", 32, 0, 0, 255, option2Im);
+  optionButtons[10] = new Button(width / 2, 400, 300, 200, "Option 3", 32, 0, 0, 255, option3Im);
+  optionButtons[11] = new Button(width / 2, 600, 300, 200, "Option 4", 32, 0, 0, 255, option4Im);
+
+  optionButtons[12] = new Button(width / 2, 0, 300, 200, "Option 1", 32, 0, 0, 255, option1Im);
+  optionButtons[13] = new Button(width / 2, 200, 300, 200, "Option 2", 32, 0, 0, 255, option2Im);
+  optionButtons[14] = new Button(width / 2, 400, 300, 200, "Option 3", 32, 0, 0, 255, option3Im);
+  optionButtons[15] = new Button(width / 2, 600, 300, 200, "Option 4", 32, 0, 0, 255, option4Im);
 }
 
 
@@ -84,27 +99,42 @@ void draw()
   }
   if (continueButtons[1].isPressed == true)
   {
-    showOptions();
+    showOptionsForCall();
     if (optionButtons[0].isPressed)
     {
-        continueWithSimulation(callMovie, 2);
-    }
-    else if(optionButtons[1].isPressed || optionButtons[2].isPressed || optionButtons[3].isPressed)
+      continueWithSimulation(callMovie, 2);
+    } else if (optionButtons[1].isPressed || optionButtons[2].isPressed || optionButtons[3].isPressed)
     {
       showExplanation();
-      showOptions();
+      showOptionsForCall();
     }
   }
 
   if (continueButtons[2].isPressed == true)
   {
-    continueWithSimulation(findFireExtinguishersMovie, 3);
+    println("the continue button 2 has been pressed");
+    showOptionsForFireExtinguishers();
+    if (optionButtons[0].isPressed)
+    {
+      continueWithSimulation(findFireExtinguishersMovie, 3);
+    } else if (optionButtons[1].isPressed || optionButtons[2].isPressed || optionButtons[3].isPressed)
+    {
+      showExplanation();
+      showOptionsForFireExtinguishers();
+    }
   }
 
   if (continueButtons[3].isPressed == true)
   {
-
-    continueWithSimulation(getOutOfBuildingMovie, 4);
+    showOptionsForExitPath();
+    if (optionButtons[0].isPressed)
+    {
+      continueWithSimulation(getOutOfBuildingMovie, 4);
+    } else if (optionButtons[1].isPressed || optionButtons[2].isPressed || optionButtons[3].isPressed)
+    {
+      showExplanation();
+      showOptionsForExitPath();
+    }
   }
 }
 
@@ -137,13 +167,33 @@ void wrongAnswer()
 {
 }
 
-void showOptions()
+void showOptionsForCall()
 {
-  for (int i = 0; i < numberOfOptions; i++)
+  for (int i = 0; i < 4; i++)
   {
     optionButtons[i].display();
   }
+  println("Call Options shown");
 }
+
+void showOptionsForFireExtinguishers()
+{
+  for (int i = 4; i < 9; i++)
+  {
+    optionButtons[i].display();
+  }
+  println("Fire extinguisher Options shown");
+}
+
+void showOptionsForExitPath()
+{
+  for (int i = 10; i < 13; i++)
+  {
+    optionButtons[i].display();
+  }
+  println("Exit paths Options shown");
+}
+
 
 void showExplanation()
 {
