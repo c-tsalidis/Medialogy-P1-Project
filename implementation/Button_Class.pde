@@ -34,30 +34,29 @@ class Button
     update();
   }
 
-
-  void update()
-  {
-    isPressed = false;
-    if (mouseX >= x && mouseX <= (x + buttonWidth) && mouseY >= y && mouseY <= (y + buttonHeight))
-    {
-      if (mousePressed == true)
-      {
-        isPressed = true;
-        // println("button pressed");
-      }
-    }
-  }
-
   /*
-  // update but with the event mouseClicked instead of mousePressed
-   void update()
+  void update()
    {
-   // isPressed = false;
+   isPressed = false;
    if (mouseX >= x && mouseX <= (x + buttonWidth) && mouseY >= y && mouseY <= (y + buttonHeight))
+   {
+   if (mousePressed == true)
    {
    isPressed = true;
    // println("button pressed");
    }
    }
+   }
    */
+
+  // update but with the event mouseClicked instead of mousePressed
+  void update()
+  {
+    // isPressed = false;
+    // if (mouseX >= x && mouseX <= (x + buttonWidth) && mouseY >= y && mouseY <= (y + buttonHeight))
+    // {
+      // isPressed = true;
+      // println("button pressed");
+    // }
+  }
 }

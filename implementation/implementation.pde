@@ -22,39 +22,39 @@ boolean [] showScene = new boolean[6];
 
 // try again buttons, one for each scene with user interaction
 Button [] tryAgain = new Button[4];
-  /*
+/*
   
-   --> Phone call
-   --> Choosing fire extinguisher
-   --> Choosing how to use the fire extinguisher
-   --> choosing the path
-  
-  */
+ --> Phone call
+ --> Choosing fire extinguisher
+ --> Choosing how to use the fire extinguisher
+ --> choosing the path
+ 
+ */
 
 // amount of buttons for the call
 Button [] callOptionsButtons = new Button[6];
-  /*
+/*
   
-  --> 112
-  --> 114
-  --> Mother
-  --> Best friend
-  --> Continue
-  --> Try again
-  */
+ --> 112
+ --> 114
+ --> Mother
+ --> Best friend
+ --> Continue
+ --> Try again
+ */
 
 // amount of buttons for choosing the fire extinguisher
 Button [] choosingFireExtinguisherOptionsButtons = new Button[5];
-  /*
+/*
   
-  --> CO2
-  --> Water
-  --> Foam
-  --> Dry powder
-  --> Try again
-  
-  */
-  
+ --> CO2
+ --> Water
+ --> Foam
+ --> Dry powder
+ --> Try again
+ 
+ */
+
 
 
 Button simulateButton;
@@ -64,35 +64,35 @@ Button simulateButton;
 int time;
 
 
-
+int callState = 0;
 
 
 /*
 
-states --> one for each scene
-
-showScene[0] --> main menu with simulate button
-
-
-showScene[1] --> fire and clicking fire alarm video. The call options appear. Create a try again button for scene1
-             --> if the user clicks on 112 -> showScene[2] == true
-             --> else if the user clicks on:
-                       --> 114 --> show iamge of 114 to explain why it's wrong, and the try again button
-                       --> mother --> show image of mother to explain why it's wrong, and the try again button
-                       --> best friend --> show image of best friend to explain why it's wrong, and the try again button
-                   --> then the user restarts that scene --> showScene[1] == true
-                     
-
-showScene[2] --> video for choosing fire extinguisher and fire extinguisher options appear
-showScene[3] -->  video for choosing how to use the fire extinguisher appears
-             --> how to use fire extinguisher options appear
-showScene[4] --> video for seaarching for an exit door
-             --> door options buttons and images appear
-showScene[5] --> the user escapes from the room successfully
-             --> the quit menu appears
-
-
-*/
+ states --> one for each scene
+ 
+ showScene[0] --> main menu with simulate button
+ 
+ 
+ showScene[1] --> fire and clicking fire alarm video. The call options appear. Create a try again button for scene1
+ --> if the user clicks on 112 -> showScene[2] == true
+ --> else if the user clicks on:
+ --> 114 --> show iamge of 114 to explain why it's wrong, and the try again button
+ --> mother --> show image of mother to explain why it's wrong, and the try again button
+ --> best friend --> show image of best friend to explain why it's wrong, and the try again button
+ --> then the user restarts that scene --> showScene[1] == true
+ 
+ 
+ showScene[2] --> video for choosing fire extinguisher and fire extinguisher options appear
+ showScene[3] -->  video for choosing how to use the fire extinguisher appears
+ --> how to use fire extinguisher options appear
+ showScene[4] --> video for seaarching for an exit door
+ --> door options buttons and images appear
+ showScene[5] --> the user escapes from the room successfully
+ --> the quit menu appears
+ 
+ 
+ */
 
 void setup()
 {
@@ -120,7 +120,7 @@ void setup()
 
   //  x, y, width of button, height of button
   simulateButton = new Button(width / 4, height / 2, 300, 200, "SIMULATE"); // the simulate button
-  
+
   // call option buttons
   callOptionsButtons[0] = new Button(1160, 350, 600, 90, ""); // 112
   callOptionsButtons[1] = new Button(1160, 450, 600, 90, ""); // 114
@@ -146,15 +146,15 @@ void draw()
 
 void showScene()
 {
-  if(state == 0) // if the main menu scene is true
+  if (state == 0) // if the main menu scene is true
   {
     showMainMenu();
   }
-  if(state == 1)
+  if (state == 1)
   {
     showScene1();
   }
-  if(state == 2)
+  if (state == 2)
   {
     showScene2();
   }
@@ -163,7 +163,7 @@ void showScene()
 
 void update()
 {
-  if(simulateButton.isPressed == true) // if the simulate button is pressed
+  if (simulateButton.isPressed == true) // if the simulate button is pressed
   {
     state = 1; // it loads scene 1
   }
@@ -185,8 +185,7 @@ boolean playMovie(Movie movie)
   if (movie.time() >= movie.duration())
   { 
     return true; // it finished
-  }
-  else return false;
+  } else return false;
 }
 
 
@@ -197,26 +196,25 @@ void showMainMenu() //scene 0, state 0
 
 void showScene1() // there is fire, and 
 {
-/*
+  /*
 --> fire and clicking fire alarm video. The call options appear. Create a try again button for scene1
-             --> if the user clicks on 112 -> showScene[2] == true
-             --> else if the user clicks on:
-                       --> 114 --> show iamge of 114 to explain why it's wrong, and the try again button
-                       --> mother --> show image of mother to explain why it's wrong, and the try again button
-                       --> best friend --> show image of best friend to explain why it's wrong, and the try again button
-                   --> then the user restarts that scene --> showScene[1] == true
-*/
+   --> if the user clicks on 112 -> showScene[2] == true
+   --> else if the user clicks on:
+   --> 114 --> show iamge of 114 to explain why it's wrong, and the try again button
+   --> mother --> show image of mother to explain why it's wrong, and the try again button
+   --> best friend --> show image of best friend to explain why it's wrong, and the try again button
+   --> then the user restarts that scene --> showScene[1] == true
+   */
 
-  if(playMovie(fireAlarmAndCallMovie) == true) // if the movie finished playing
+  if (playMovie(fireAlarmAndCallMovie) == true) // if the movie finished playing
   {
     showOptionsForCall();
   }
-
 }
 
 void showScene2()
 {
-  if(playMovie(choosingTheFireExtinguisherMovie) == true) // if the movie finished playing
+  if (playMovie(choosingTheFireExtinguisherMovie) == true) // if the movie finished playing
   {
     showOptionsForChoosingFireExtinguishers();
   }
@@ -225,49 +223,112 @@ void showScene2()
 
 void showOptionsForCall()
 {
+
+  
   imageMode(CENTER);
   image(chooseCallIm, width / 2, height / 2);
-  
-  for(int i = 0; i < callOptionsButtons.length; i++)
+
+  for (int i = 0; i < callOptionsButtons.length; i++)
   {
     callOptionsButtons[i].display();
   }
-  
-  if(callOptionsButtons[0].isPressed == true) // if the user clicks on option 112
+
+
+
+  if (callOptionsButtons[0].isPressed == true) // if the user clicks on option 112
   {
-    println("112 pressed");
+    // callOptionsButtons[0].isPressed = false;
+    // println("112 pressed");
+    /*
+    simulateButton.isPressed = false;
+    callOptionsButtons[1].isPressed = false;
+    callOptionsButtons[2].isPressed = false;
+    callOptionsButtons[3].isPressed = false;
+    callOptionsButtons[4].isPressed = false;
+    callOptionsButtons[5].isPressed = false;
+    */
     imageMode(CENTER);
     image(im112, width / 2, height / 2);
   }
-  
-  else if(callOptionsButtons[2].isPressed == true) // if the user clicks on option 114
+  if (callOptionsButtons[2].isPressed == true) // if the user clicks on option 114
   {
-    println("114 pressed");
+    // callOptionsButtons[2].isPressed = false;
+    /*
+    simulateButton.isPressed = false;
+    callOptionsButtons[0].isPressed = false;
+    callOptionsButtons[1].isPressed = false;
+    callOptionsButtons[3].isPressed = false;
+    callOptionsButtons[4].isPressed = false;
+    callOptionsButtons[5].isPressed = false;
+    */
+    println("114 clicked");
     imageMode(CENTER);
     image(im114, width / 2, height / 2);
   }
-  else if(callOptionsButtons[1].isPressed == true) // if the user clicks on option mother
+  if (callOptionsButtons[1].isPressed == true) // if the user clicks on option mother
   {
-    println("Mother option pressed");
+    // callOptionsButtons[1].isPressed = false;
+    /*
+    simulateButton.isPressed = false;
+    callOptionsButtons[0].isPressed = false;
+    callOptionsButtons[2].isPressed = false;
+    callOptionsButtons[3].isPressed = false;
+    callOptionsButtons[4].isPressed = false;
+    callOptionsButtons[5].isPressed = false;
+    */
     imageMode(CENTER);
     image(motherIm, width / 2, height / 2);
   }
-  else if(callOptionsButtons[3].isPressed == true) // if the user clicks on option best friend
+  if (callOptionsButtons[3].isPressed == true) // if the user clicks on option best friend
   {
-    println("Best friend option pressed");
+    // callOptionsButtons[3].isPressed = false;
+    /*
+    simulateButton.isPressed = false;
+    callOptionsButtons[0].isPressed = false;
+    callOptionsButtons[1].isPressed = false;
+    callOptionsButtons[2].isPressed = false;
+    callOptionsButtons[4].isPressed = false;
+    callOptionsButtons[5].isPressed = false;
+    */
     imageMode(CENTER);
     image(bestFriendIm, width / 2, height / 2);
   }
-  else if(callOptionsButtons[4].isPressed == true) // if the user clicks on option continue
+  if (callOptionsButtons[4].isPressed == true) // if the user clicks on option continue
   {
-    println("Continue button pressed");
+    // callOptionsButtons[4].isPressed = false;
+    /*
+    simulateButton.isPressed = false;
+    callOptionsButtons[0].isPressed = false;
+    callOptionsButtons[1].isPressed = false;
+    callOptionsButtons[2].isPressed = false;
+    callOptionsButtons[3].isPressed = false;
+    callOptionsButtons[5].isPressed = false;
+    */
     state = 2; // start scene 2
   }
-  else if(callOptionsButtons[5].isPressed == true) // if the user clicks on option try again
+  if (callOptionsButtons[5].isPressed == true) // if the user clicks on option try again
   {
-    println("Try again button pressed");
+    // callOptionsButtons[5].isPressed = false;
+    /*
+    simulateButton.isPressed = false;
+    callOptionsButtons[0].isPressed = false;
+    callOptionsButtons[1].isPressed = false;
+    callOptionsButtons[2].isPressed = false;
+    callOptionsButtons[3].isPressed = false;
+    callOptionsButtons[4].isPressed = false;
+    */
     state = 1; // start with scene 1
   }
+  
+  else
+  {
+    println("button pressed = false");
+    for(int i = 0; i < callOptionsButtons.length; i++)
+    {
+      callOptionsButtons[i].isPressed = false;
+    }
+  }
+  
 }
 
 
@@ -280,34 +341,83 @@ void showOptionsForChoosingFireExtinguishers()
 
 /*
  Use millis() to make the boolean to show the text true or false
-
-
-millis() ->   Returns the number of milliseconds (thousandths of a second) since starting the program.
-
-
-
-*/
+ 
+ 
+ millis() ->   Returns the number of milliseconds (thousandths of a second) since starting the program.
+ 
+ 
+ 
+ */
 
 
 /*
 void mouseClicked()
-{
-  simulateButton.update();
-  
-  
-  for(int i = 0; i < callOptionsButtons.length; i++)
-  {
-    callOptionsButtons[i].update();
-  }
-  
-}
-*/
+ {
+ simulateButton.update();
+ 
+ 
+ for(int i = 0; i < callOptionsButtons.length; i++)
+ {
+ callOptionsButtons[i].update();
+ }
+ 
+ }
+ */
 
 
 /*
 
-set up a timer to press automatically on the continue button
+ set up a timer to press automatically on the continue button
+ 
+ and don't start the timer if the user clicks on the wrong options
+ 
+ */
+void mouseClicked()
+{
+  // println("mouse clicked");
 
-and don't start the timer if the user clicks on the wrong options
-
-*/
+  if (mouseX >= simulateButton.x && mouseX <= (simulateButton.x + simulateButton.buttonWidth) && mouseY >= simulateButton.y && mouseY <= (simulateButton.y + simulateButton.buttonHeight))
+  {
+    simulateButton.isPressed = true;
+    println("simulate button clicked");
+  }
+  else if (mouseX >= callOptionsButtons[0].x && mouseX <= (callOptionsButtons[0].x + callOptionsButtons[0].buttonWidth) && mouseY >= callOptionsButtons[0].y && mouseY <= (callOptionsButtons[0].y + callOptionsButtons[0].buttonHeight))
+  {
+    callOptionsButtons[0].isPressed = true;
+    println("112 clicked");
+  }
+    else if (mouseX >= callOptionsButtons[1].x && mouseX <= (callOptionsButtons[1].x + callOptionsButtons[1].buttonWidth) && mouseY >= callOptionsButtons[1].y && mouseY <= (callOptionsButtons[1].y + callOptionsButtons[1].buttonHeight))
+  {
+    callOptionsButtons[1].isPressed = true;
+    println("Mother clicked");
+  }
+    else if (mouseX >= callOptionsButtons[2].x && mouseX <= (callOptionsButtons[2].x + callOptionsButtons[2].buttonWidth) && mouseY >= callOptionsButtons[2].y && mouseY <= (callOptionsButtons[2].y + callOptionsButtons[2].buttonHeight))
+  {
+    callOptionsButtons[2].isPressed = true;
+    println("114 clicked");
+  }
+    else if (mouseX >= callOptionsButtons[3].x && mouseX <= (callOptionsButtons[3].x + callOptionsButtons[3].buttonWidth) && mouseY >= callOptionsButtons[3].y && mouseY <= (callOptionsButtons[3].y + callOptionsButtons[3].buttonHeight))
+  {
+    callOptionsButtons[3].isPressed = true;
+    println("Best friend clicked");
+  }
+    else if (mouseX >= callOptionsButtons[4].x && mouseX <= (callOptionsButtons[4].x + callOptionsButtons[4].buttonWidth) && mouseY >= callOptionsButtons[4].y && mouseY <= (callOptionsButtons[4].y + callOptionsButtons[4].buttonHeight))
+  {
+    callOptionsButtons[4].isPressed = true;
+    println("Continue clicked");
+  }
+    else if (mouseX >= callOptionsButtons[5].x && mouseX <= (callOptionsButtons[5].x + callOptionsButtons[5].buttonWidth) && mouseY >= callOptionsButtons[5].y && mouseY <= (callOptionsButtons[5].y + callOptionsButtons[5].buttonHeight))
+  {
+    callOptionsButtons[5].isPressed = true;
+    println("Try again clicked");
+  }
+  else
+  {
+    println("button pressed = false");
+    simulateButton.isPressed = false;
+    for(int i = 0; i < callOptionsButtons.length; i++)
+    {
+      callOptionsButtons[i].isPressed = false;
+    }
+  }
+}
