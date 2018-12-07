@@ -136,7 +136,7 @@ void setup()
   chooseCallIm = loadImage("Illustrator files/Phone_options.png");
 
   // loading the choosing the fire extinguisher images
-  allFireExtinguishersIm = loadImage("Illustrator files/allFireExtinguishers.png");
+  allFireExtinguishersIm = loadImage("FireExtinguishers_done-01.png");
 
   // loading the choose how to use the fire extinguisher images
   howToOptionsIm = loadImage("Illustrator files/How_to_options.png");
@@ -176,11 +176,12 @@ void setup()
 
   /*
   // choosing fire extinguisher scene buttons
-  fireExtinguisherOptions[0] = new Button(375, 275, 225, 848 - 275, ""); // Powder
-  fireExtinguisherOptions[1] = new Button(640, 340, 890 - 640, 844 - 340, ""); // foam
-  fireExtinguisherOptions[2] = new Button(940, 280, 1216 - 940, 856 - 280, ""); // Water
-  fireExtinguisherOptions[3] = new Button(1260, 300, 1577 - 1260, 850 - 300, ""); // CO2
-
+  fireExtinguisherOptions[0] = new Button(1160, 350, 600, 90, ""); // CO2
+  fireExtinguisherOptions[1] = new Button(1160, 450, 600, 90, ""); // Powder
+  fireExtinguisherOptions[2] = new Button(1160, 550, 600, 90, ""); // Water
+  fireExtinguisherOptions[3] = new Button(1160, 650, 600, 90, ""); // foam
+  fireExtinguisherOptions[4] = new Button(605, 795, 300, 100, ""); // continue
+  fireExtinguisherOptions[5] = new Button(610, 800, 300, 100, ""); // try again
   */
 }
 

@@ -5,19 +5,11 @@ import processing.video.*;
 // phone call images
 PImage im112, im114, bestFriendIm, motherIm, chooseCallIm;
 
-// choosing a fire extinguisher image
 PImage chooseAFireExtinguisherIm;
 
-// choosing the correct fire extinguishers
 PImage allFireExtinguishersIm;
 
-// choosing how to use the fire extinguisher
-PImage howToOptionsIm, howToPullIm, howToOneIm, howToAimIm, howToTwoIm, howToSqueezeIm, howToThreeIm, howToSweepIm, howToCorrectIm, howToWrongIm;
-
-
-// choosin the path to take
-PImage threeDoorsOptionsIm, threeDoorsHallwayIm, threeDoorsBridgeIm, threeDoorsExitIm;
-
+PImage howToOptionsIm, howToCorrectIm, howToThreeOptionsLeftIm, howToTwoOptionsLeftIm, howToOneOptionLeftIm, howToWrongIm; 
 
 // Declaring the different movies
 Movie fireAlarmAndCallMovie, choosingTheFireExtinguisherMovie, findFireExtinguishersMovie, searchingForFireExitMovie, goingToFireEscapeMovie;
@@ -79,11 +71,8 @@ Button simulateButton;
 // Timer
 int time;
 
-// call state
+
 int callState = 0;
-int choosingFireExtinguisherState = 0;
-int choosingHowToUseFireExtinguisherState = 0;
-int choosingPathState = 0;
 
 
 /*
@@ -135,31 +124,17 @@ void setup()
   motherIm = loadImage("Illustrator files/Phone_Mother.png");
   chooseCallIm = loadImage("Illustrator files/Phone_options.png");
 
-  // loading the choosing the fire extinguisher images
-  allFireExtinguishersIm = loadImage("Illustrator files/allFireExtinguishers.png");
-
   // loading the choose how to use the fire extinguisher images
-  howToOptionsIm = loadImage("Illustrator files/How_to_options.png");
-  howToPullIm = loadImage("Illustrator files/How_to_Pull.png");
-  howToOneIm = loadImage("Illustrator files/How_to_one.png");
-  howToAimIm = loadImage("Illustrator files/How_to_Aim.png");
-  howToTwoIm = loadImage("Illustrator files/How_to_two.png");
-  howToSqueezeIm = loadImage("Illustrator files/How_to_Squeeze.png");
-  howToThreeIm = loadImage("Illustrator files/How_to_three.png");
-  howToSweepIm = loadImage("Illustrator files/How_to_Sweep.png");
-  howToCorrectIm = loadImage("Illustrator files/How_to_Correct.png");
-  howToWrongIm = loadImage("Illustrator files/How_to_wrong.png");
-
-
-  // path to take images
-  threeDoorsOptionsIm = loadImage("Illustrator files/threedoors_options.png");
-  threeDoorsHallwayIm = loadImage("Illustrator files/threedoors_Hallway.png");
-  threeDoorsBridgeIm = loadImage("Illustrator files/threedoors_bridge.png");
-  threeDoorsExitIm = loadImage("Illustrator files/threedoors_Exit door.png");
-
-
-
-
+  = new loadImage("Illustrator files/How_to_options.png");
+  = new loadImage("Illustrator files/How_to_Pull.png");
+  = new loadImage("Illustrator files/How_to_one.png");
+  = new loadImage("Illustrator files/How_to_Aim.png");
+  = new loadImage("Illustrator files/How_to_two.png");
+  = new loadImage("Illustrator files/How_to_Squeeze.png");
+  = new loadImage("Illustrator files/How_to_three.png");
+  = new loadImage("Illustrator files/How_to_Sweep.png");
+  = new loadImage("Illustrator files/How_to_Correct.png");
+  = new loadImage("Illustrator files/How_to_wrong.png");
   // declaring the continueButtons
 
   //  x, y, width of button, height of button
@@ -172,16 +147,10 @@ void setup()
   callOptionsButtons[3] = new Button(1160, 650, 600, 90, ""); // friend
   callOptionsButtons[4] = new Button(605, 795, 300, 100, ""); // continue
   callOptionsButtons[5] = new Button(610, 800, 300, 100, ""); // try again
-
-
-  /*
-  // choosing fire extinguisher scene buttons
-  fireExtinguisherOptions[0] = new Button(375, 275, 225, 848 - 275, ""); // Powder
-  fireExtinguisherOptions[1] = new Button(640, 340, 890 - 640, 844 - 340, ""); // foam
-  fireExtinguisherOptions[2] = new Button(940, 280, 1216 - 940, 856 - 280, ""); // Water
-  fireExtinguisherOptions[3] = new Button(1260, 300, 1577 - 1260, 850 - 300, ""); // CO2
-
-  */
+  
+  
+  
+  
 }
 
 
@@ -192,13 +161,8 @@ void movieEvent(Movie m)
 }
 
 void draw()
-{
-
-  imageMode(CENTER);
-  image(allFireExtinguishersIm, width / 2, height / 2);
-
-  println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
-  
+{ 
+  // println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
   showScene();
   update();
 }
@@ -216,22 +180,6 @@ void showScene()
   if (state == 2)
   {
     showScene2();
-  }
-  if (state == 3)
-  {
-    showScene3();
-  }
-  if (state == 4)
-  {
-    showScene4();
-  }
-  if (state == 5)
-  {
-    showScene5();
-  }
-  if (state == 6)
-  {
-    showScene6();
   }
 }
 
@@ -296,18 +244,10 @@ void showScene2()
 }
 
 
-void showScene3()
-{}
-void showScene4()
-{}
-void showScene5()
-{}
-void showScene6()
-{}
-
-
 void showOptionsForCall()
 {
+
+  
   imageMode(CENTER);
   image(chooseCallIm, width / 2, height / 2);
 
@@ -317,71 +257,42 @@ void showOptionsForCall()
   }
 
 
-  if (callState == 1)
+  if(callState == 1)
   {
     imageMode(CENTER);
     image(im112, width / 2, height / 2);
+    
   }
-  if (callState == 2)
+  if(callState == 2)
   {
     imageMode(CENTER);
     image(motherIm, width / 2, height / 2);
   }
-  if (callState == 3)
+  if(callState == 3)
   {
     imageMode(CENTER);
     image(im114, width / 2, height / 2);
   }
-  if (callState == 4)
+  if(callState == 4)
   {
     imageMode(CENTER);
     image(bestFriendIm, width / 2, height / 2);
   }
-
-  if (callState == 5)
+  
+  if(callState == 5)
   {
     state = 2;
   }
+  
 }
 
 
 void showOptionsForChoosingFireExtinguishers()
 {
   println("Showed options for choosing fire extinguishers");
-  imageMode(CENTER);
-  image(howToOptionsIm, width / 2, height / 2);
-
-  for (int i = 0; i < callOptionsButtons.length; i++)
-  {
-    callOptionsButtons[i].display();
-  }
-
-
-  if (choosingFireExtinguisherState == 1)
-  {
-    imageMode(CENTER);
-    image(im112, width / 2, height / 2);
-  }
-  if (choosingFireExtinguisherState == 2)
-  {
-    imageMode(CENTER);
-    image(motherIm, width / 2, height / 2);
-  }
-  if (choosingFireExtinguisherState == 3)
-  {
-    imageMode(CENTER);
-    image(im114, width / 2, height / 2);
-  }
-  if (choosingFireExtinguisherState == 4)
-  {
-    imageMode(CENTER);
-    image(bestFriendIm, width / 2, height / 2);
-  }
-
-  if (choosingFireExtinguisherState == 5)
-  {
-    state = 2;
-  }
+  
+  
+  
 }
 
 
@@ -393,41 +304,49 @@ void mouseClicked()
   {
     simulateButton.isPressed = true;
     println("simulate button clicked");
-  } else if (mouseX >= callOptionsButtons[0].x && mouseX <= (callOptionsButtons[0].x + callOptionsButtons[0].buttonWidth) && mouseY >= callOptionsButtons[0].y && mouseY <= (callOptionsButtons[0].y + callOptionsButtons[0].buttonHeight))
+    
+  }
+  else if (mouseX >= callOptionsButtons[0].x && mouseX <= (callOptionsButtons[0].x + callOptionsButtons[0].buttonWidth) && mouseY >= callOptionsButtons[0].y && mouseY <= (callOptionsButtons[0].y + callOptionsButtons[0].buttonHeight))
   {
     callOptionsButtons[0].isPressed = true;
     println("112 clicked");
     callState = 1;
-  } else if (mouseX >= callOptionsButtons[1].x && mouseX <= (callOptionsButtons[1].x + callOptionsButtons[1].buttonWidth) && mouseY >= callOptionsButtons[1].y && mouseY <= (callOptionsButtons[1].y + callOptionsButtons[1].buttonHeight))
+  }
+    else if (mouseX >= callOptionsButtons[1].x && mouseX <= (callOptionsButtons[1].x + callOptionsButtons[1].buttonWidth) && mouseY >= callOptionsButtons[1].y && mouseY <= (callOptionsButtons[1].y + callOptionsButtons[1].buttonHeight))
   {
     callOptionsButtons[1].isPressed = true;
     println("Mother clicked");
     callState = 2;
-  } else if (mouseX >= callOptionsButtons[2].x && mouseX <= (callOptionsButtons[2].x + callOptionsButtons[2].buttonWidth) && mouseY >= callOptionsButtons[2].y && mouseY <= (callOptionsButtons[2].y + callOptionsButtons[2].buttonHeight))
+  }
+    else if (mouseX >= callOptionsButtons[2].x && mouseX <= (callOptionsButtons[2].x + callOptionsButtons[2].buttonWidth) && mouseY >= callOptionsButtons[2].y && mouseY <= (callOptionsButtons[2].y + callOptionsButtons[2].buttonHeight))
   {
     callOptionsButtons[2].isPressed = true;
     println("114 clicked");
     callState = 3;
-  } else if (mouseX >= callOptionsButtons[3].x && mouseX <= (callOptionsButtons[3].x + callOptionsButtons[3].buttonWidth) && mouseY >= callOptionsButtons[3].y && mouseY <= (callOptionsButtons[3].y + callOptionsButtons[3].buttonHeight))
+  }
+    else if (mouseX >= callOptionsButtons[3].x && mouseX <= (callOptionsButtons[3].x + callOptionsButtons[3].buttonWidth) && mouseY >= callOptionsButtons[3].y && mouseY <= (callOptionsButtons[3].y + callOptionsButtons[3].buttonHeight))
   {
     callOptionsButtons[3].isPressed = true;
     println("Best friend clicked");
     callState = 4;
-  } else if (mouseX >= callOptionsButtons[4].x && mouseX <= (callOptionsButtons[4].x + callOptionsButtons[4].buttonWidth) && mouseY >= callOptionsButtons[4].y && mouseY <= (callOptionsButtons[4].y + callOptionsButtons[4].buttonHeight))
+  }
+    else if (mouseX >= callOptionsButtons[4].x && mouseX <= (callOptionsButtons[4].x + callOptionsButtons[4].buttonWidth) && mouseY >= callOptionsButtons[4].y && mouseY <= (callOptionsButtons[4].y + callOptionsButtons[4].buttonHeight))
   {
     callOptionsButtons[4].isPressed = true;
     println("Continue clicked");
     callState = 5;
-  } else if (mouseX >= callOptionsButtons[5].x && mouseX <= (callOptionsButtons[5].x + callOptionsButtons[5].buttonWidth) && mouseY >= callOptionsButtons[5].y && mouseY <= (callOptionsButtons[5].y + callOptionsButtons[5].buttonHeight))
+  }
+    else if (mouseX >= callOptionsButtons[5].x && mouseX <= (callOptionsButtons[5].x + callOptionsButtons[5].buttonWidth) && mouseY >= callOptionsButtons[5].y && mouseY <= (callOptionsButtons[5].y + callOptionsButtons[5].buttonHeight))
   {
     callOptionsButtons[5].isPressed = true;
     println("Try again clicked");
     callState = 6;
-  } else
+  }
+  else
   {
     println("button pressed = false");
     simulateButton.isPressed = false;
-    for (int i = 0; i < callOptionsButtons.length; i++)
+    for(int i = 0; i < callOptionsButtons.length; i++)
     {
       callOptionsButtons[i].isPressed = false;
     }
