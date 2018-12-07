@@ -387,6 +387,9 @@ void showOptionsForChoosingFireExtinguishers()
 
 void mouseClicked()
 {
+  
+  // CHANGE IT SO THAT IF (MOUSE COORDINATES && STATE == (SCENE)) --> THEN IT MEANS THAT THAT SPECIFIC BUTTON HAS BEEN PRESSED, BECAUSE IT IS OVERLAYING OTHER BUTTONS WITH THE SAME COORDINATES BUT IN DIFFERENT SCENES
+  
   // println("mouse clicked");
 
   if (mouseX >= simulateButton.x && mouseX <= (simulateButton.x + simulateButton.buttonWidth) && mouseY >= simulateButton.y && mouseY <= (simulateButton.y + simulateButton.buttonHeight))
