@@ -32,15 +32,15 @@ Button [] tryAgain = new Button[4];
   */
 
 // amount of buttons for the call
-Button [] callOptionsButtons = new Button[5];
+Button [] callOptionsButtons = new Button[6];
   /*
   
   --> 112
   --> 114
   --> Mother
   --> Best friend
+  --> Continue
   --> Try again
-  
   */
 
 // amount of buttons for choosing the fire extinguisher
@@ -127,6 +127,7 @@ void setup()
   callOptionsButtons[2] = new Button(1160, 550, 600, 90, ""); // mother
   callOptionsButtons[3] = new Button(1160, 650, 600, 90, ""); // friend
   callOptionsButtons[4] = new Button(605, 795, 300, 100, ""); // continue
+  callOptionsButtons[5] = new Button(610, 800, 300, 100, ""); // try again
 }
 
 
@@ -138,7 +139,7 @@ void movieEvent(Movie m)
 
 void draw()
 { 
-  println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
+  // println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
   showScene();
   update();
 }
@@ -152,6 +153,10 @@ void showScene()
   if(state == 1)
   {
     showScene1();
+  }
+  if(state == 2)
+  {
+    showScene2();
   }
 }
 
@@ -173,7 +178,8 @@ void showCorrectCall()
 boolean playMovie(Movie movie)
 {
   movie.play();
-  image(movie, 0, 0, width, height);
+  imageMode(CENTER);
+  image(movie, width / 2, height / 2, width, height);
   // println(movie + " played");
 
   if (movie.time() >= movie.duration())
@@ -208,6 +214,15 @@ void showScene1() // there is fire, and
 
 }
 
+void showScene2()
+{
+  if(playMovie(choosingTheFireExtinguisherMovie) == true) // if the movie finished playing
+  {
+    showOptionsForChoosingFireExtinguishers();
+  }
+}
+
+
 void showOptionsForCall()
 {
   imageMode(CENTER);
@@ -220,11 +235,46 @@ void showOptionsForCall()
   
   if(callOptionsButtons[0].isPressed == true) // if the user clicks on option 112
   {
+    println("112 pressed");
     imageMode(CENTER);
     image(im112, width / 2, height / 2);
   }
+  
+  else if(callOptionsButtons[2].isPressed == true) // if the user clicks on option 114
+  {
+    println("114 pressed");
+    imageMode(CENTER);
+    image(im114, width / 2, height / 2);
+  }
+  else if(callOptionsButtons[1].isPressed == true) // if the user clicks on option mother
+  {
+    println("Mother option pressed");
+    imageMode(CENTER);
+    image(motherIm, width / 2, height / 2);
+  }
+  else if(callOptionsButtons[3].isPressed == true) // if the user clicks on option best friend
+  {
+    println("Best friend option pressed");
+    imageMode(CENTER);
+    image(bestFriendIm, width / 2, height / 2);
+  }
+  else if(callOptionsButtons[4].isPressed == true) // if the user clicks on option continue
+  {
+    println("Continue button pressed");
+    state = 2; // start scene 2
+  }
+  else if(callOptionsButtons[5].isPressed == true) // if the user clicks on option try again
+  {
+    println("Try again button pressed");
+    state = 1; // start with scene 1
+  }
 }
 
+
+void showOptionsForChoosingFireExtinguishers()
+{
+  println("Showed options for choosing fire extinguishers");
+}
 
 
 
@@ -235,5 +285,29 @@ void showOptionsForCall()
 millis() ->   Returns the number of milliseconds (thousandths of a second) since starting the program.
 
 
+
+*/
+
+
+/*
+void mouseClicked()
+{
+  simulateButton.update();
+  
+  
+  for(int i = 0; i < callOptionsButtons.length; i++)
+  {
+    callOptionsButtons[i].update();
+  }
+  
+}
+*/
+
+
+/*
+
+set up a timer to press automatically on the continue button
+
+and don't start the timer if the user clicks on the wrong options
 
 */
