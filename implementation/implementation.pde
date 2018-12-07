@@ -234,33 +234,54 @@ void showOptionsForCall()
   }
 
 
+  if(callState == 1)
+  {
+    imageMode(CENTER);
+    image(im112, width / 2, height / 2);
+    
+  }
+  if(callState == 2)
+  {
+    imageMode(CENTER);
+    image(motherIm, width / 2, height / 2);
+  }
+  if(callState == 3)
+  {
+    imageMode(CENTER);
+    image(im114, width / 2, height / 2);
+  }
+  if(callState == 4)
+  {
+    imageMode(CENTER);
+    image(bestFriendIm, width / 2, height / 2);
+  }
+  
+  if(callState == 5)
+  {
+    state = 2;
+  }
+  /*
+  if(callState == 1)
+  {
+    imageMode(CENTER);
+    image(im112, width / 2, height / 2);
+  }
+  */
 
+  
+/*
   if (callOptionsButtons[0].isPressed == true) // if the user clicks on option 112
   {
     // callOptionsButtons[0].isPressed = false;
     // println("112 pressed");
-    /*
-    simulateButton.isPressed = false;
-    callOptionsButtons[1].isPressed = false;
-    callOptionsButtons[2].isPressed = false;
-    callOptionsButtons[3].isPressed = false;
-    callOptionsButtons[4].isPressed = false;
-    callOptionsButtons[5].isPressed = false;
-    */
+
     imageMode(CENTER);
     image(im112, width / 2, height / 2);
   }
   if (callOptionsButtons[2].isPressed == true) // if the user clicks on option 114
   {
     // callOptionsButtons[2].isPressed = false;
-    /*
-    simulateButton.isPressed = false;
-    callOptionsButtons[0].isPressed = false;
-    callOptionsButtons[1].isPressed = false;
-    callOptionsButtons[3].isPressed = false;
-    callOptionsButtons[4].isPressed = false;
-    callOptionsButtons[5].isPressed = false;
-    */
+
     println("114 clicked");
     imageMode(CENTER);
     image(im114, width / 2, height / 2);
@@ -268,55 +289,26 @@ void showOptionsForCall()
   if (callOptionsButtons[1].isPressed == true) // if the user clicks on option mother
   {
     // callOptionsButtons[1].isPressed = false;
-    /*
-    simulateButton.isPressed = false;
-    callOptionsButtons[0].isPressed = false;
-    callOptionsButtons[2].isPressed = false;
-    callOptionsButtons[3].isPressed = false;
-    callOptionsButtons[4].isPressed = false;
-    callOptionsButtons[5].isPressed = false;
-    */
     imageMode(CENTER);
     image(motherIm, width / 2, height / 2);
   }
   if (callOptionsButtons[3].isPressed == true) // if the user clicks on option best friend
   {
     // callOptionsButtons[3].isPressed = false;
-    /*
-    simulateButton.isPressed = false;
-    callOptionsButtons[0].isPressed = false;
-    callOptionsButtons[1].isPressed = false;
-    callOptionsButtons[2].isPressed = false;
-    callOptionsButtons[4].isPressed = false;
-    callOptionsButtons[5].isPressed = false;
-    */
+
     imageMode(CENTER);
     image(bestFriendIm, width / 2, height / 2);
   }
   if (callOptionsButtons[4].isPressed == true) // if the user clicks on option continue
   {
     // callOptionsButtons[4].isPressed = false;
-    /*
-    simulateButton.isPressed = false;
-    callOptionsButtons[0].isPressed = false;
-    callOptionsButtons[1].isPressed = false;
-    callOptionsButtons[2].isPressed = false;
-    callOptionsButtons[3].isPressed = false;
-    callOptionsButtons[5].isPressed = false;
-    */
+
     state = 2; // start scene 2
   }
   if (callOptionsButtons[5].isPressed == true) // if the user clicks on option try again
   {
     // callOptionsButtons[5].isPressed = false;
-    /*
-    simulateButton.isPressed = false;
-    callOptionsButtons[0].isPressed = false;
-    callOptionsButtons[1].isPressed = false;
-    callOptionsButtons[2].isPressed = false;
-    callOptionsButtons[3].isPressed = false;
-    callOptionsButtons[4].isPressed = false;
-    */
+ 
     state = 1; // start with scene 1
   }
   
@@ -329,6 +321,8 @@ void showOptionsForCall()
     }
   }
   
+  */
+  
 }
 
 
@@ -338,40 +332,6 @@ void showOptionsForChoosingFireExtinguishers()
 }
 
 
-
-/*
- Use millis() to make the boolean to show the text true or false
- 
- 
- millis() ->   Returns the number of milliseconds (thousandths of a second) since starting the program.
- 
- 
- 
- */
-
-
-/*
-void mouseClicked()
- {
- simulateButton.update();
- 
- 
- for(int i = 0; i < callOptionsButtons.length; i++)
- {
- callOptionsButtons[i].update();
- }
- 
- }
- */
-
-
-/*
-
- set up a timer to press automatically on the continue button
- 
- and don't start the timer if the user clicks on the wrong options
- 
- */
 void mouseClicked()
 {
   // println("mouse clicked");
@@ -380,36 +340,43 @@ void mouseClicked()
   {
     simulateButton.isPressed = true;
     println("simulate button clicked");
+    
   }
   else if (mouseX >= callOptionsButtons[0].x && mouseX <= (callOptionsButtons[0].x + callOptionsButtons[0].buttonWidth) && mouseY >= callOptionsButtons[0].y && mouseY <= (callOptionsButtons[0].y + callOptionsButtons[0].buttonHeight))
   {
     callOptionsButtons[0].isPressed = true;
     println("112 clicked");
+    callState = 1;
   }
     else if (mouseX >= callOptionsButtons[1].x && mouseX <= (callOptionsButtons[1].x + callOptionsButtons[1].buttonWidth) && mouseY >= callOptionsButtons[1].y && mouseY <= (callOptionsButtons[1].y + callOptionsButtons[1].buttonHeight))
   {
     callOptionsButtons[1].isPressed = true;
     println("Mother clicked");
+    callState = 2;
   }
     else if (mouseX >= callOptionsButtons[2].x && mouseX <= (callOptionsButtons[2].x + callOptionsButtons[2].buttonWidth) && mouseY >= callOptionsButtons[2].y && mouseY <= (callOptionsButtons[2].y + callOptionsButtons[2].buttonHeight))
   {
     callOptionsButtons[2].isPressed = true;
     println("114 clicked");
+    callState = 3;
   }
     else if (mouseX >= callOptionsButtons[3].x && mouseX <= (callOptionsButtons[3].x + callOptionsButtons[3].buttonWidth) && mouseY >= callOptionsButtons[3].y && mouseY <= (callOptionsButtons[3].y + callOptionsButtons[3].buttonHeight))
   {
     callOptionsButtons[3].isPressed = true;
     println("Best friend clicked");
+    callState = 4;
   }
     else if (mouseX >= callOptionsButtons[4].x && mouseX <= (callOptionsButtons[4].x + callOptionsButtons[4].buttonWidth) && mouseY >= callOptionsButtons[4].y && mouseY <= (callOptionsButtons[4].y + callOptionsButtons[4].buttonHeight))
   {
     callOptionsButtons[4].isPressed = true;
     println("Continue clicked");
+    callState = 5;
   }
     else if (mouseX >= callOptionsButtons[5].x && mouseX <= (callOptionsButtons[5].x + callOptionsButtons[5].buttonWidth) && mouseY >= callOptionsButtons[5].y && mouseY <= (callOptionsButtons[5].y + callOptionsButtons[5].buttonHeight))
   {
     callOptionsButtons[5].isPressed = true;
     println("Try again clicked");
+    callState = 6;
   }
   else
   {
