@@ -200,18 +200,18 @@ void setup()
 
 
   // choosing how to use the fire extinguisher buttons
-  choosingHowToUseFireExtinguisherButtons[0] = new Button(100, 100, 100, 100, ""); //
-  choosingHowToUseFireExtinguisherButtons[1] = new Button(100, 100, 100, 100, ""); //
-  choosingHowToUseFireExtinguisherButtons[2] = new Button(100, 100, 100, 100, ""); //
-  choosingHowToUseFireExtinguisherButtons[3] = new Button(100, 100, 100, 100, ""); //
-  choosingHowToUseFireExtinguisherButtons[4] = new Button(100, 100, 100, 100, ""); //
-  choosingHowToUseFireExtinguisherButtons[5] = new Button(100, 100, 100, 100, ""); //
-  choosingHowToUseFireExtinguisherButtons[6] = new Button(100, 100, 100, 100, ""); //
-  choosingHowToUseFireExtinguisherButtons[7] = new Button(100, 100, 100, 100, ""); //
+  choosingHowToUseFireExtinguisherButtons[0] = new Button(430, 330, 350, 210, ""); // pull out safety pin
+  choosingHowToUseFireExtinguisherButtons[1] = new Button(1175, 660, 350, 210, ""); // aim at the base of the fire
+  choosingHowToUseFireExtinguisherButtons[2] = new Button(1140, 300, 350, 210, ""); // squeeze slow and even on the lever
+  choosingHowToUseFireExtinguisherButtons[3] = new Button(390, 660, 350, 210, ""); // sweep the nozzle horizontally
+  choosingHowToUseFireExtinguisherButtons[4] = new Button(1025, 805, 320, 100, ""); // continue in pull out safety pin
+  choosingHowToUseFireExtinguisherButtons[5] = new Button(570, 800, 320, 100, ""); // continue in aim at the base of the fire
+  choosingHowToUseFireExtinguisherButtons[6] = new Button(570, 800, 320, 100, ""); // continue in squeeze
+  choosingHowToUseFireExtinguisherButtons[7] = new Button(1025, 805, 320, 100, ""); // continue in sweep
   choosingHowToUseFireExtinguisherButtons[8] = new Button(100, 100, 100, 100, ""); //
   choosingHowToUseFireExtinguisherButtons[9] = new Button(100, 100, 100, 100, ""); //
-  choosingHowToUseFireExtinguisherButtons[10] = new Button(100, 100, 100, 100, ""); // Try again
-  choosingHowToUseFireExtinguisherButtons[11] = new Button(100, 100, 100, 100, ""); // continue
+  choosingHowToUseFireExtinguisherButtons[10] = new Button(830, 795, 320, 100, ""); // Try again -> show the 'wrong image'
+  choosingHowToUseFireExtinguisherButtons[11] = new Button(830, 795, 320, 100, ""); // continue -> show the 'pass' image
 
 
   // choosing the exit path options buttons
@@ -232,10 +232,15 @@ void movieEvent(Movie m)
 void draw()
 {
 
-   // imageMode(CENTER);
-   // image(allFireExtinguishersIm, width / 2, height / 2);
+    imageMode(CENTER);
+    // image(howToPullIm, width / 2, height / 2);
+    // image(howToAimIm, width / 2, height / 2);
+    // image(howToSqueezeIm, width / 2, height / 2);
+    // image(howToSweepIm, width / 2, height / 2);
+    // image(howToCorrectIm, width / 2, height / 2);
 
-   // println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
+
+   println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
   
   showScene();
   update();
@@ -470,42 +475,42 @@ void showOptionsForChoosingHowToUseFireExinguisher()
     imageMode(CENTER);
     image(howToOptionsIm, width / 2, height / 2);
   }
-  if (choosingHowToUseFireExtinguisherState == 1)
+  if (choosingHowToUseFireExtinguisherState == 1) // pull out safety pin
   {
     imageMode(CENTER);
     image(howToPullIm, width / 2, height / 2);
   }
-  if (choosingHowToUseFireExtinguisherState == 2)
+  if (choosingHowToUseFireExtinguisherState == 2) // continue in pull out safety pin
   {
     imageMode(CENTER);
     image(howToOneIm, width / 2, height / 2);
   }
-  if (choosingHowToUseFireExtinguisherState == 3)
+  if (choosingHowToUseFireExtinguisherState == 3) // aim at the base of fire
   {
     imageMode(CENTER);
     image(howToAimIm, width / 2, height / 2);
   }
-  if (choosingHowToUseFireExtinguisherState == 4)
+  if (choosingHowToUseFireExtinguisherState == 4) // continue in aim at the base of fire
   {
     imageMode(CENTER);
     image(howToTwoIm, width / 2, height / 2);
   }
-  if (choosingHowToUseFireExtinguisherState == 5)
+  if (choosingHowToUseFireExtinguisherState == 5) // squeeze 
   {
     imageMode(CENTER);
     image(howToSqueezeIm, width / 2, height / 2);
   }
-  if (choosingHowToUseFireExtinguisherState == 6)
+  if (choosingHowToUseFireExtinguisherState == 6) // continue in squeeze 
   {
     imageMode(CENTER);
     image(howToThreeIm, width / 2, height / 2);
   }
-  if (choosingHowToUseFireExtinguisherState == 7)
+  if (choosingHowToUseFireExtinguisherState == 7) // sweep
   {
     imageMode(CENTER);
     image(howToSweepIm, width / 2, height / 8);
   }
-  if (choosingHowToUseFireExtinguisherState == 9)
+  if (choosingHowToUseFireExtinguisherState == 9) // continue in sweep
   {
     imageMode(CENTER);
     image(howToCorrectIm, width / 2, height / 2);
@@ -519,7 +524,7 @@ void showOptionsForChoosingHowToUseFireExinguisher()
   {
     choosingHowToUseFireExtinguisherState = 0;
   }
-  if (choosingHowToUseFireExtinguisherState == 12) // continue state
+  if (choosingHowToUseFireExtinguisherState == 12) // continue 'pass' state
   {
     state = 4;
   }
