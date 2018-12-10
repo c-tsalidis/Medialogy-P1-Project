@@ -265,7 +265,7 @@ void draw()
     // image(howToCorrectIm, width / 2, height / 2);
     // image(threeDoorsExitIm, width / 2, height / 2);
 
-   println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
+  // println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
   
   showScene();
   update();
@@ -610,13 +610,13 @@ void showOptionsForSearchingForFireExit()
   if (choosingPathState == 1)
   {
     imageMode(CENTER);
-    image(threeDoorsHallwayIm, width / 2, height / 2);
+    image(threeDoorsBridgeIm, width / 2, height / 2);
     // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingPathState == 2)
   {
     imageMode(CENTER);
-    image(threeDoorsBridgeIm, width / 2, height / 2);
+    image(threeDoorsHallwayIm, width / 2, height / 2);
     // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingPathState == 3)
