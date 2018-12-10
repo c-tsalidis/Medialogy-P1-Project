@@ -91,6 +91,8 @@ Button [] choosingTheExitPathButtons = new Button[5];
 
 Button simulateButton;
 
+Button quitButton;
+
 
 // Timer
 int time;
@@ -181,7 +183,7 @@ void setup()
   // declaring the continueButtons
 
   //  x, y, width of button, height of button
-  simulateButton = new Button(width / 4, height / 2, 300, 200, "SIMULATE"); // the simulate button
+  simulateButton = new Button(810, 640, 1100 - 810, 740 - 640, ""); // the simulate button
 
   // call option buttons
   callOptionsButtons[0] = new Button(1160, 350, 600, 90, ""); // 112
@@ -225,6 +227,10 @@ void setup()
   choosingTheExitPathButtons[2] = new Button(790 + 480, 100, 480, 870, ""); // 
   choosingTheExitPathButtons[3] = new Button(820, 770, 300, 100, ""); // try again
   choosingTheExitPathButtons[4] = new Button(1120, 770, 300, 100, ""); // continue
+
+
+  // the quit button to end the simulation
+  quitButton = new Button(800, 500, 400, 200);
 }
 
 
@@ -316,6 +322,8 @@ boolean playMovie(Movie movie)
 void showMainMenu() //scene 0, state 0
 {
   simulateButton.display(); // the simulate button
+  imageMode(CENTER);
+  image(mainMenuIm, width / 2, height /2);
 }
 
 void showScene1() // there is fire, and 
@@ -367,7 +375,12 @@ void showScene5()
   }
 }
 void showScene6()
-{}
+{
+  if(playMovie(goingToFireEscapeMovie) == true)
+  {
+
+  }  
+}
 
 
 void showOptionsForCall()
@@ -564,25 +577,25 @@ void showOptionsForSearchingForFireExit()
   {
     imageMode(CENTER);
     image(threeDoorsOptionsIm, width / 2, height / 2);
-    choosingFireExtinguisherOptionsButtons[4].display(); // try again button
+    // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingPathState == 1)
   {
     imageMode(CENTER);
     image(threeDoorsHallwayIm, width / 2, height / 2);
-    choosingFireExtinguisherOptionsButtons[4].display(); // try again button
+    // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingPathState == 2)
   {
     imageMode(CENTER);
     image(threeDoorsBridgeIm, width / 2, height / 2);
-    choosingFireExtinguisherOptionsButtons[4].display(); // try again button
+    // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingPathState == 3)
   {
     imageMode(CENTER);
     image(threeDoorsExitIm, width / 2, height / 2);
-    choosingFireExtinguisherOptionsButtons[4].display(); // try again button
+    // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
 
   if (choosingPathState == 4)
@@ -597,7 +610,11 @@ void showOptionsForSearchingForFireExit()
 
 
 void goingToFireEscape()
-{}
+{
+  println("End of fire simulation");
+    imageMode(CENTER);
+    image(endOfSimulationIm, width /2, height /2);
+}
 
 
 
@@ -800,6 +817,14 @@ void mouseClicked()
     choosingTheExitPathButtons[4].isPressed = true;
     println("Continue clicked");
     choosingPathState = 5;
+  }
+
+  // the end of the simulation buttons
+  else if (mouseX >= quitButton.x && mouseX <= (quitButton.x + quitButton.buttonWidth) && mouseY >= quitButton.y && mouseY <= (quitButton.y + quitButton.buttonHeight)  && state == 5)
+  {
+    quitButton.isPressed = true;
+    println("Quit button clicked");
+    exit();
   }
 
 
