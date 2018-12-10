@@ -139,11 +139,11 @@ void setup()
   frameRate(30); // framerate of the video
 
   // declaring the movies
-  fireAlarmAndCallMovie = new Movie(this, "searching for fire alarm and calling.mp4"); // declaring the movie
-  choosingTheFireExtinguisherMovie = new Movie(this, "choosing fire extinguisher.mp4"); // call emergency movie
-  findFireExtinguishersMovie = new Movie(this, "choosing how to use fire extinguisher.mp4");
-  searchingForFireExitMovie = new Movie(this, "searching for fire exit sign.mp4");
-  goingToFireEscapeMovie = new Movie(this, "going to fire escape.mp4");
+  fireAlarmAndCallMovie = new Movie(this, "Animated video/searching for fire alarm and calling.mp4"); // declaring the movie
+  choosingTheFireExtinguisherMovie = new Movie(this, "Animated video/choosing fire extinguisher.mp4"); // call emergency movie
+  findFireExtinguishersMovie = new Movie(this, "Animated video/choosing how to use fire extinguisher.mp4");
+  searchingForFireExitMovie = new Movie(this, "Animated video/searching for fire exit sign.mp4");
+  goingToFireEscapeMovie = new Movie(this, "Animated video/going to fire escape.mp4");
 
 
   // main menu image
@@ -178,9 +178,9 @@ void setup()
 
   // path to take images
   threeDoorsOptionsIm = loadImage("Illustrator files/threedoors_options.png");
-  threeDoorsHallwayIm = loadImage("Illustrator files/threedoors_Hallway.png");
-  threeDoorsBridgeIm = loadImage("Illustrator files/threedoors_bridge.png");
-  threeDoorsExitIm = loadImage("Illustrator files/threedoors_Exit door.png");
+  threeDoorsHallwayIm = loadImage("New/threedoors_Hallway.png");
+  threeDoorsBridgeIm = loadImage("New/threedoors_bridge.png");
+  threeDoorsExitIm = loadImage("New/threedoors_Exit door.png");
 
   // end of simulation image
   endOfSimulationIm = loadImage("Illustrator files/End_simulation.png");
@@ -237,6 +237,9 @@ void setup()
 
   // the quit button to end the simulation
   quitButton = new Button(800, 500, 400, 200);
+
+  state = 4;
+
 }
 
 
@@ -511,7 +514,7 @@ void showOptionsForChoosingHowToUseFireExinguisher()
     image(howToPullIm, width / 2, height / 2);
     // choosingHowToUseFireExtinguisherButtons[0].display();
   }
-  if (choosingHowToUseFireExtinguisherState == 2) // continue in pull out safety pin
+  if (continueButtonState == continueToThreeOptionsLeftButton) // continue in pull out safety pin
   {
     imageMode(CENTER);
     image(howToOneIm, width / 2, height / 2);
@@ -764,6 +767,12 @@ void mouseClicked()
   // continue button
   else if (mouseX >= choosingHowToUseFireExtinguisherButtons[4].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[4].x + choosingHowToUseFireExtinguisherButtons[4].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[4].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[4].y + choosingHowToUseFireExtinguisherButtons[4].buttonHeight)  && state == 3)
   {
+    if(continueButtonState == continueToThreeOptionsLeftButton)
+    {
+          imageMode(CENTER);
+          image(howToOneIm, width / 2, height / 2);
+    }
+    /*
     if(choosingHowToUseFireExtinguisherState == allOptionsLeftState && continueButtonState == 0)
     {
       choosingHowToUseFireExtinguisherButtons[0].isPressed = true;
@@ -805,6 +814,8 @@ void mouseClicked()
       state = 4; // next scene  
       continueButtonState = continueToNextSceneButton;
     }
+    */
+    showOptionsForChoosingHowToUseFireExinguisher();
 
   } 
   /*else if (mouseX >= choosingHowToUseFireExtinguisherButtons[5].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
