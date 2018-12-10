@@ -31,6 +31,7 @@ class Button
   void display()
   {
     text(text, x, y, buttonWidth, buttonHeight);
+    // rect(x, y, buttonWidth, buttonHeight);
     update();
   }
 
