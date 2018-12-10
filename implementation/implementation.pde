@@ -12,8 +12,8 @@ PImage im112, im114, bestFriendIm, motherIm, chooseCallIm;
 PImage allFireExtinguishersIm, fireExtinguisherCO2Im, fireExtinguisherDryPowderIm, fireExtinguisherFoamIm, fireExtinguisherWaterIm;
 
 // choosing how to use the fire extinguisher
-PImage howToOptionsIm, howToPullIm, howToOneIm, howToAimIm, howToTwoIm, howToSqueezeIm, howToThreeIm, howToSweepIm, howToCorrectIm, howToWrongIm;
-
+// PImage howToOptionsIm, howToPullIm, howToOneIm, howToAimIm, howToTwoIm, howToSqueezeIm, howToThreeIm, howToSweepIm, howToCorrectIm, howToWrongIm;
+PImage howToUseFireExtinguisherAllOptionsIm, howToUseFireExtinguisherCorrectIm, howToUseFireExtinguisherWrongIm;
 
 // choosing the path to take
 PImage threeDoorsOptionsIm, threeDoorsHallwayIm, threeDoorsBridgeIm, threeDoorsExitIm;
@@ -163,6 +163,7 @@ void setup()
   fireExtinguisherFoamIm = loadImage("New/FireExtinguishers_info_foam.png");
   fireExtinguisherWaterIm = loadImage("New/FireExtinguishers_info_Water.png");
 
+  /*
   // loading the choose how to use the fire extinguisher images
   howToOptionsIm = loadImage("New/How_to_options.png");
   howToPullIm = loadImage("New/How_to_Pull.png");
@@ -174,7 +175,10 @@ void setup()
   howToSweepIm = loadImage("New/How_to_sweep.png");
   howToCorrectIm = loadImage("New/How_to_correct.png");
   howToWrongIm = loadImage("New/How_to_wrong.png");
-
+  */
+  howToUseFireExtinguisherAllOptionsIm = loadImage("New/how to use fire extinguisher.png");
+  howToUseFireExtinguisherCorrectIm = loadImage("New/how to use fire extinguisher correct.png");
+  howToUseFireExtinguisherWrongIm = loadImage("New/how to use fire extinguisher wrong.png");
 
   // path to take images
   threeDoorsOptionsIm = loadImage("Illustrator files/threedoors_options.png");
@@ -205,16 +209,16 @@ void setup()
   choosingFireExtinguisherOptionsButtons[1] = new Button(640, 340, 225, 500, ""); // foam
   choosingFireExtinguisherOptionsButtons[2] = new Button(940, 280, 225, 500, ""); // Water
   choosingFireExtinguisherOptionsButtons[3] = new Button(1260, 300, 225, 500, ""); // CO2
-  choosingFireExtinguisherOptionsButtons[4] = new Button(630, 830, 300, 100, ""); // try again
-  choosingFireExtinguisherOptionsButtons[5] = new Button(930, 830, 300, 100, ""); // continue
+  choosingFireExtinguisherOptionsButtons[4] = new Button(460, 840, 300, 100, ""); // try again
+  choosingFireExtinguisherOptionsButtons[5] = new Button(840, 840, 300, 100, ""); // continue
 
 
   // choosing how to use the fire extinguisher buttons
   
-  choosingHowToUseFireExtinguisherButtons[0] = new Button(430, 305, 400, 120, ""); // pull out safety pin
-  choosingHowToUseFireExtinguisherButtons[1] = new Button(1175, 660, 400, 120, ""); // aim at the base of the fire
-  choosingHowToUseFireExtinguisherButtons[2] = new Button(1140, 300, 400, 120, ""); // squeeze slow and even on the lever
-  choosingHowToUseFireExtinguisherButtons[3] = new Button(390, 660, 400, 120, ""); // sweep the nozzle horizontally
+  choosingHowToUseFireExtinguisherButtons[0] = new Button(430, 310, 400, 120, ""); // pull out safety pin
+  choosingHowToUseFireExtinguisherButtons[1] = new Button(430, 780, 400, 120, ""); // aim at the base of the fire
+  choosingHowToUseFireExtinguisherButtons[2] = new Button(430, 465, 400, 120, ""); // squeeze slow and even on the lever
+  choosingHowToUseFireExtinguisherButtons[3] = new Button(430, 620, 400, 120, ""); // sweep the nozzle horizontally
   /*
   choosingHowToUseFireExtinguisherButtons[4] = new Button(1160, 814, 320, 100, ""); // continue in pull out safety pin
   choosingHowToUseFireExtinguisherButtons[5] = new Button(1460, 814, 320, 100, ""); // continue in aim at the base of the fire
@@ -223,22 +227,22 @@ void setup()
   choosingHowToUseFireExtinguisherButtons[8] = new Button(100, 100, 100, 100, ""); //
   choosingHowToUseFireExtinguisherButtons[9] = new Button(100, 100, 100, 100, ""); //
   */
-  choosingHowToUseFireExtinguisherButtons[4] = new Button(1100, 816, 320, 100, ""); // Try again -> show the 'wrong image'
-  choosingHowToUseFireExtinguisherButtons[5] = new Button(1100, 900, 320, 100, ""); // continue -> show the 'pass' image
+  choosingHowToUseFireExtinguisherButtons[4] = new Button(828, 813, 320, 100, ""); // Try again -> show the 'wrong image'
+  choosingHowToUseFireExtinguisherButtons[5] = new Button(1160, 810, 320, 100, ""); // continue -> show the 'pass' image
   
 
   // choosing the exit path options buttons
-  choosingTheExitPathButtons[0] = new Button(300, 100, 780 - 300, 970 - 100, ""); // 
-  choosingTheExitPathButtons[1] = new Button(790, 100, 480, 662, ""); // 
-  choosingTheExitPathButtons[2] = new Button(790 + 480, 100, 480, 870, ""); // 
-  choosingTheExitPathButtons[3] = new Button(820, 770, 300, 100, ""); // try again
-  choosingTheExitPathButtons[4] = new Button(1120, 770, 300, 100, ""); // continue
+  choosingTheExitPathButtons[0] = new Button(300, 100, 780 - 300, 670, ""); // 
+  choosingTheExitPathButtons[1] = new Button(790, 100, 380, 662, ""); // 
+  choosingTheExitPathButtons[2] = new Button(790 + 480, 100, 480, 670, ""); // 
+  choosingTheExitPathButtons[3] = new Button(650, 780, 300, 100, ""); // try again
+  choosingTheExitPathButtons[4] = new Button(1040, 780, 300, 100, ""); // continue
 
 
   // the quit button to end the simulation
   quitButton = new Button(800, 500, 400, 200);
 
-  state = 4;
+   // state = 4;
 
 }
 
@@ -259,7 +263,7 @@ void draw()
     // image(howToSqueezeIm, width / 2, height / 2);
     // image(howToSweepIm, width / 2, height / 2);
     // image(howToCorrectIm, width / 2, height / 2);
-    // image(threeDoorsOptionsIm, width / 2, height / 2);
+    // image(threeDoorsExitIm, width / 2, height / 2);
 
    println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
   
@@ -503,6 +507,7 @@ void showOptionsForChoosingHowToUseFireExinguisher()
     choosingHowToUseFireExtinguisherButtons[i].display();
   }
 */
+  /*
   if (choosingHowToUseFireExtinguisherState == allOptionsLeftState) // default image
   {
     imageMode(CENTER);
@@ -569,7 +574,21 @@ void showOptionsForChoosingHowToUseFireExinguisher()
   {
     state = 4;
   }
+  */
 
+  imageMode(CENTER);
+  if(choosingHowToUseFireExtinguisherState == 0)
+  {
+    image(howToUseFireExtinguisherAllOptionsIm, width / 2, height / 2);
+  }
+  else if(choosingHowToUseFireExtinguisherState ==  4)
+  {
+    image(howToUseFireExtinguisherCorrectIm, width / 2, height / 2);
+  }
+  else if(choosingHowToUseFireExtinguisherState ==  1 || choosingHowToUseFireExtinguisherState ==  2 || choosingHowToUseFireExtinguisherState ==  3)
+  {
+    image(howToUseFireExtinguisherWrongIm, width / 2, height / 2);
+  }
 }
 
 
@@ -721,57 +740,57 @@ void mouseClicked()
 
   else if (mouseX >= choosingHowToUseFireExtinguisherButtons[0].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[0].x + choosingHowToUseFireExtinguisherButtons[0].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[0].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[0].y + choosingHowToUseFireExtinguisherButtons[0].buttonHeight)  && state == 3)
   {
-    if(choosingHowToUseFireExtinguisherState == allOptionsLeftState && continueButtonState == 0)
-    {
+    //if(choosingHowToUseFireExtinguisherState == allOptionsLeftState && continueButtonState == 0)
+    //{
       choosingHowToUseFireExtinguisherButtons[0].isPressed = true;
       println("Pull the safety pin clicked");
-      // choosingHowToUseFireExtinguisherState = 1;
-      choosingHowToUseFireExtinguisherState = threeOptionsLeft;
-      continueButtonState = continueToThreeOptionsLeftButton;
+       choosingHowToUseFireExtinguisherState = 1;
+    //  choosingHowToUseFireExtinguisherState = threeOptionsLeft;
+    //  continueButtonState = continueToThreeOptionsLeftButton;
       // state = 4; // TEMPORARY --> CHANGE IT WHEN FINISHED DEBUGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    }
+    //}
   } else if (mouseX >= choosingHowToUseFireExtinguisherButtons[1].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[1].x + choosingHowToUseFireExtinguisherButtons[1].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[1].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[1].y + choosingHowToUseFireExtinguisherButtons[1].buttonHeight)  && state == 3)
   {
-    if(choosingHowToUseFireExtinguisherState == threeOptionsLeft && continueButtonState == continueToThreeOptionsLeftButton)
-    {
+    // if(choosingHowToUseFireExtinguisherState == threeOptionsLeft && continueButtonState == continueToThreeOptionsLeftButton)
+    // {
       choosingHowToUseFireExtinguisherButtons[1].isPressed = true;
       println("Aim at the base of fire clicked");
-      // choosingHowToUseFireExtinguisherState = 2;
-      choosingHowToUseFireExtinguisherState = twoOptionsLeft;
-      continueButtonState = continueToTwoOptionsLeftButton;
-    }
+       choosingHowToUseFireExtinguisherState = 2;
+    //   choosingHowToUseFireExtinguisherState = twoOptionsLeft;
+    //   continueButtonState = continueToTwoOptionsLeftButton;
+    // }
   } else if (mouseX >= choosingHowToUseFireExtinguisherButtons[2].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[2].x + choosingHowToUseFireExtinguisherButtons[2].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[2].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[2].y + choosingHowToUseFireExtinguisherButtons[2].buttonHeight)  && state == 3)
   {
-    if(choosingHowToUseFireExtinguisherState == twoOptionsLeft && continueButtonState == continueToTwoOptionsLeftButton)
-    {
+   //  if(choosingHowToUseFireExtinguisherState == twoOptionsLeft && continueButtonState == continueToTwoOptionsLeftButton)
+    // {
       choosingHowToUseFireExtinguisherButtons[2].isPressed = true;
       println("Squeeze clicked");
-      // choosingHowToUseFireExtinguisherState = 3;
-      choosingHowToUseFireExtinguisherState = oneOptionLeft;
-      continueButtonState = continueToOneOptionLeftButton;
-    }
+      choosingHowToUseFireExtinguisherState = 3;
+    //   choosingHowToUseFireExtinguisherState = oneOptionLeft;
+    //   continueButtonState = continueToOneOptionLeftButton;
+    // }
   } else if (mouseX >= choosingHowToUseFireExtinguisherButtons[3].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[3].x + choosingHowToUseFireExtinguisherButtons[3].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[3].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[3].y + choosingHowToUseFireExtinguisherButtons[3].buttonHeight)  && state == 3)
   {
-    if(choosingHowToUseFireExtinguisherState == oneOptionLeft && continueButtonState == continueToOneOptionLeftButton)
-    {
+    // if(choosingHowToUseFireExtinguisherState == oneOptionLeft && continueButtonState == continueToOneOptionLeftButton)
+    // {
       choosingHowToUseFireExtinguisherButtons[3].isPressed = true;
       println("Sweep clicked");
-      // choosingHowToUseFireExtinguisherState = 4;
-      choosingHowToUseFireExtinguisherState = passState;
-      continueButtonState = continueToPassButton;
-    }
+      choosingHowToUseFireExtinguisherState = 4;
+    //   choosingHowToUseFireExtinguisherState = passState;
+    //   continueButtonState = continueToPassButton;
+   //  }
   } 
 
-
-
-  // continue button
   else if (mouseX >= choosingHowToUseFireExtinguisherButtons[4].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[4].x + choosingHowToUseFireExtinguisherButtons[4].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[4].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[4].y + choosingHowToUseFireExtinguisherButtons[4].buttonHeight)  && state == 3)
   {
-    if(continueButtonState == continueToThreeOptionsLeftButton)
-    {
-          imageMode(CENTER);
-          image(howToOneIm, width / 2, height / 2);
-    }
+    println("try again button clicked");
+    choosingHowToUseFireExtinguisherState = 0;
+  }
+  // continue button
+  else if (mouseX >= choosingHowToUseFireExtinguisherButtons[5].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
+  {
+    println("continue button clicked");
+    state = 4;
     /*
     if(choosingHowToUseFireExtinguisherState == allOptionsLeftState && continueButtonState == 0)
     {
@@ -815,7 +834,7 @@ void mouseClicked()
       continueButtonState = continueToNextSceneButton;
     }
     */
-    showOptionsForChoosingHowToUseFireExinguisher();
+    // showOptionsForChoosingHowToUseFireExinguisher();
 
   } 
   /*else if (mouseX >= choosingHowToUseFireExtinguisherButtons[5].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
