@@ -29,11 +29,57 @@ Movie fireAlarmAndCallMovie, choosingTheFireExtinguisherMovie, findFireExtinguis
 
 
 int state = 0;
-// call state
+
+
+// different scenes states
+int mainMenuScenarioState = 0;
+int fireAlarmAndCallingScenarioState = 1;
+int choosingFireExtinguisherScenarioState = 2;
+int howToUseFireExtinguisherScenarioState = 3;
+int choosingTheCorrectExitPathScenarioState = 4;
+int goingToTheCorrectExitPathScenarioState = 5;
+
+
+
+// states inside the different scenarios --> different options
+
+// phone call scenario options
 int callState = 0;
+// callState options states
+int callState112 = 1;
+int callStateMother = 2;
+int callState114 = 3;
+int callStateBestFriend = 4;
+int callStateContinue = 5;
+
+// choosing fire extinguisher scenario options
 int choosingFireExtinguisherState = 0;
+// choosing fire extinguisher options states
+int allFireExtinguisherState = 0;
+int dryPowderState = 1;
+int foamState = 2;
+int waterState = 3;
+int co2State = 4;
+int choosingFireExtinguisherTryAgainState = 5;
+int choosingFireExtinguisherContinueState = 6;
+
+// how to use fire extinguisher scenario options
 int choosingHowToUseFireExtinguisherState = 0;
+// how to use fire extinguisher options states
+int howToUseAllOptionsState = 0;
+int howToUseCorrectState = 4;
+int [] howToUseWrongState = {1, 2, 3};
+
+// choosing the correct exit path scenario options
 int choosingPathState = 0;
+// choosing the correct exit path options states
+int threeDoorsState = 0;
+int threeDoorsBridgeState = 1;
+int threeDoorsHallwayState = 2;
+int threeDoorsExitSignState = 3;
+int threeDoorsTryAgainState = 4;
+int threeDoorsContinueState = 5;
+
 
 int sequenceState = 0;
 int continueButtonState = 0;
@@ -105,7 +151,6 @@ int time;
 
 
 /*
-
  states --> one for each scene
  
  showScene[0] --> main menu with simulate button
@@ -255,15 +300,7 @@ void movieEvent(Movie m)
 
 void draw()
 {
-
     imageMode(CENTER);
-    // image(howToOptionsIm, width / 2, height / 2);
-    // image(howToPullIm, width / 2, height / 2);
-    // image(howToAimIm, width / 2, height / 2);
-    // image(howToSqueezeIm, width / 2, height / 2);
-    // image(howToSweepIm, width / 2, height / 2);
-    // image(howToCorrectIm, width / 2, height / 2);
-    // image(threeDoorsExitIm, width / 2, height / 2);
 
   // println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
   
@@ -273,33 +310,29 @@ void draw()
 
 void showScene()
 {
-  if (state == 0) // if the main menu scene is true
+  if (state == mainMenuScenarioState) // if the main menu scene is true
   {
     showMainMenu();
   }
-  if (state == 1) // finding fire alarm and calling
+  if (state == fireAlarmAndCallingScenarioState) // finding fire alarm and calling
   {
     showScene1();
   }
-  if (state == 2) // choosing the extinguisher
+  if (state == choosingFireExtinguisherScenarioState) // choosing the extinguisher
   {
     showScene2();
   }
-  if (state == 3) // choosing how to use the extinguisher
+  if (state == howToUseFireExtinguisherScenarioState) // choosing how to use the extinguisher
   {
     showScene3();
   }
-  if (state == 4) // choosing the correct exit path
+  if (state == choosingTheCorrectExitPathScenarioState) // choosing the correct exit path
   {
     showScene4();
   }
-  if (state == 5) // going to the correct exit path
+  if (state == goingToTheCorrectExitPathScenarioState) // going to the correct exit path
   {
     showScene5();
-  }
-  if (state == 6)
-  {
-    showScene6();
   }
 }
 
@@ -308,15 +341,11 @@ void update()
 {
   if (simulateButton.isPressed == true) // if the simulate button is pressed
   {
-    state = 1; // it loads scene 1
+    state = fireAlarmAndCallingScenarioState; // it loads scene 1
   }
 }
 
-void showCorrectCall()
-{
-  imageMode(CENTER);
-  image(im112, width / 2, height / 2);
-}
+
 
 boolean playMovie(Movie movie)
 {
@@ -407,30 +436,30 @@ void showOptionsForCall()
   }
 
 
-  if (callState == 1)
+  if (callState == callState112)
   {
     imageMode(CENTER);
     image(im112, width / 2, height / 2);
   }
-  if (callState == 2)
+  if (callState == callStateMother)
   {
     imageMode(CENTER);
     image(motherIm, width / 2, height / 2);
   }
-  if (callState == 3)
+  if (callState == callState114)
   {
     imageMode(CENTER);
     image(im114, width / 2, height / 2);
   }
-  if (callState == 4)
+  if (callState == callStateBestFriend)
   {
     imageMode(CENTER);
     image(bestFriendIm, width / 2, height / 2);
   }
 
-  if (callState == 5)
+  if (callState == callStateContinue)
   {
-    state = 2;
+    state = choosingFireExtinguisherScenarioState;
   }
 }
 
@@ -453,44 +482,44 @@ void showOptionsForChoosingFireExtinguishers()
     choosingFireExtinguisherOptionsButtons[i].display();
   }
 
-  if(choosingFireExtinguisherState == 0)
+  if(choosingFireExtinguisherState == allFireExtinguisherState)
   {
     imageMode(CENTER);
     image(allFireExtinguishersIm, width / 2, height / 2);
     choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
-  if (choosingFireExtinguisherState == 1)
+  if (choosingFireExtinguisherState == dryPowderState)
   {
     imageMode(CENTER);
     image(fireExtinguisherDryPowderIm, width / 2, height / 2);
     choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
-  if (choosingFireExtinguisherState == 2)
+  if (choosingFireExtinguisherState == foamState)
   {
     imageMode(CENTER);
     image(fireExtinguisherFoamIm, width / 2, height / 2);
     choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
-  if (choosingFireExtinguisherState == 3)
+  if (choosingFireExtinguisherState == waterState)
   {
     imageMode(CENTER);
     image(fireExtinguisherWaterIm, width / 2, height / 2);
     choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
-  if (choosingFireExtinguisherState == 4)
+  if (choosingFireExtinguisherState == co2State)
   {
     imageMode(CENTER);
     image(fireExtinguisherCO2Im, width / 2, height / 2);
     choosingFireExtinguisherOptionsButtons[5].display(); // continue button
   }
 
-  if (choosingFireExtinguisherState == 5)
+  if (choosingFireExtinguisherState == choosingFireExtinguisherTryAgainState)
   {
-    choosingFireExtinguisherState = 0;
+    choosingFireExtinguisherState = allFireExtinguisherState;
   }
-  if (choosingFireExtinguisherState == 6)
+  if (choosingFireExtinguisherState == choosingFireExtinguisherContinueState)
   {
-    state = 3;
+    state = howToUseFireExtinguisherScenarioState;
   }
 }
 
@@ -585,7 +614,9 @@ void showOptionsForChoosingHowToUseFireExinguisher()
   {
     image(howToUseFireExtinguisherCorrectIm, width / 2, height / 2);
   }
-  else if(choosingHowToUseFireExtinguisherState ==  1 || choosingHowToUseFireExtinguisherState ==  2 || choosingHowToUseFireExtinguisherState ==  3)
+  else if(choosingHowToUseFireExtinguisherState ==  howToUseWrongState[0] || 
+          choosingHowToUseFireExtinguisherState ==  howToUseWrongState[1] || 
+          choosingHowToUseFireExtinguisherState ==  howToUseWrongState[2])
   {
     image(howToUseFireExtinguisherWrongIm, width / 2, height / 2);
   }
@@ -601,38 +632,38 @@ void showOptionsForSearchingForFireExit()
     choosingTheExitPathButtons[i].display();
   }
 
-  if(choosingPathState == 0)
+  if(choosingPathState == threeDoorsState)
   {
     imageMode(CENTER);
     image(threeDoorsOptionsIm, width / 2, height / 2);
     // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
-  if (choosingPathState == 1)
+  if (choosingPathState == threeDoorsBridgeState)
   {
     imageMode(CENTER);
     image(threeDoorsBridgeIm, width / 2, height / 2);
     // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
-  if (choosingPathState == 2)
+  if (choosingPathState == threeDoorsHallwayState)
   {
     imageMode(CENTER);
     image(threeDoorsHallwayIm, width / 2, height / 2);
     // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
-  if (choosingPathState == 3)
+  if (choosingPathState == threeDoorsExitSignState)
   {
     imageMode(CENTER);
     image(threeDoorsExitIm, width / 2, height / 2);
     // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
 
-  if (choosingPathState == 4)
+  if (choosingPathState == threeDoorsTryAgainState)
   {
-    choosingPathState = 0; // try again
+    choosingPathState = threeDoorsState; // try again
   }
-  if (choosingPathState == 5) // continue
+  if (choosingPathState == threeDoorsContinueState) // continue
   {
-    state = 5;
+    state = goingToTheCorrectExitPathScenarioState;
   }
 }
 
@@ -640,13 +671,9 @@ void showOptionsForSearchingForFireExit()
 void goingToFireEscape()
 {
   println("End of fire simulation");
-    imageMode(CENTER);
-    image(endOfSimulationIm, width /2, height /2);
+  imageMode(CENTER);
+  image(endOfSimulationIm, width /2, height /2);
 }
-
-
-
-
 
 
 
@@ -667,32 +694,32 @@ void mouseClicked()
 
   // call options buttons
 
-  else if (mouseX >= callOptionsButtons[0].x && mouseX <= (callOptionsButtons[0].x + callOptionsButtons[0].buttonWidth) && mouseY >= callOptionsButtons[0].y && mouseY <= (callOptionsButtons[0].y + callOptionsButtons[0].buttonHeight)  && state == 1)
+  else if (mouseX >= callOptionsButtons[0].x && mouseX <= (callOptionsButtons[0].x + callOptionsButtons[0].buttonWidth) && mouseY >= callOptionsButtons[0].y && mouseY <= (callOptionsButtons[0].y + callOptionsButtons[0].buttonHeight)  && state == fireAlarmAndCallingScenarioState)
   {
     callOptionsButtons[0].isPressed = true;
     println("112 clicked");
     callState = 1;
-  } else if (mouseX >= callOptionsButtons[1].x && mouseX <= (callOptionsButtons[1].x + callOptionsButtons[1].buttonWidth) && mouseY >= callOptionsButtons[1].y && mouseY <= (callOptionsButtons[1].y + callOptionsButtons[1].buttonHeight)  && state == 1)
+  } else if (mouseX >= callOptionsButtons[1].x && mouseX <= (callOptionsButtons[1].x + callOptionsButtons[1].buttonWidth) && mouseY >= callOptionsButtons[1].y && mouseY <= (callOptionsButtons[1].y + callOptionsButtons[1].buttonHeight)  && state == fireAlarmAndCallingScenarioState)
   {
     callOptionsButtons[1].isPressed = true;
     println("Mother clicked");
     callState = 2;
-  } else if (mouseX >= callOptionsButtons[2].x && mouseX <= (callOptionsButtons[2].x + callOptionsButtons[2].buttonWidth) && mouseY >= callOptionsButtons[2].y && mouseY <= (callOptionsButtons[2].y + callOptionsButtons[2].buttonHeight)  && state == 1)
+  } else if (mouseX >= callOptionsButtons[2].x && mouseX <= (callOptionsButtons[2].x + callOptionsButtons[2].buttonWidth) && mouseY >= callOptionsButtons[2].y && mouseY <= (callOptionsButtons[2].y + callOptionsButtons[2].buttonHeight)  && state == fireAlarmAndCallingScenarioState)
   {
     callOptionsButtons[2].isPressed = true;
     println("114 clicked");
     callState = 3;
-  } else if (mouseX >= callOptionsButtons[3].x && mouseX <= (callOptionsButtons[3].x + callOptionsButtons[3].buttonWidth) && mouseY >= callOptionsButtons[3].y && mouseY <= (callOptionsButtons[3].y + callOptionsButtons[3].buttonHeight)  && state == 1)
+  } else if (mouseX >= callOptionsButtons[3].x && mouseX <= (callOptionsButtons[3].x + callOptionsButtons[3].buttonWidth) && mouseY >= callOptionsButtons[3].y && mouseY <= (callOptionsButtons[3].y + callOptionsButtons[3].buttonHeight)  && state == fireAlarmAndCallingScenarioState)
   {
     callOptionsButtons[3].isPressed = true;
     println("Best friend clicked");
     callState = 4;
-  } else if (mouseX >= callOptionsButtons[4].x && mouseX <= (callOptionsButtons[4].x + callOptionsButtons[4].buttonWidth) && mouseY >= callOptionsButtons[4].y && mouseY <= (callOptionsButtons[4].y + callOptionsButtons[4].buttonHeight)  && state == 1)
+  } else if (mouseX >= callOptionsButtons[4].x && mouseX <= (callOptionsButtons[4].x + callOptionsButtons[4].buttonWidth) && mouseY >= callOptionsButtons[4].y && mouseY <= (callOptionsButtons[4].y + callOptionsButtons[4].buttonHeight)  && state == fireAlarmAndCallingScenarioState)
   {
     callOptionsButtons[4].isPressed = true;
     println("Continue clicked");
     callState = 5;
-  } else if (mouseX >= callOptionsButtons[5].x && mouseX <= (callOptionsButtons[5].x + callOptionsButtons[5].buttonWidth) && mouseY >= callOptionsButtons[5].y && mouseY <= (callOptionsButtons[5].y + callOptionsButtons[5].buttonHeight)  && state == 1)
+  } else if (mouseX >= callOptionsButtons[5].x && mouseX <= (callOptionsButtons[5].x + callOptionsButtons[5].buttonWidth) && mouseY >= callOptionsButtons[5].y && mouseY <= (callOptionsButtons[5].y + callOptionsButtons[5].buttonHeight)  && state == fireAlarmAndCallingScenarioState)
   {
     callOptionsButtons[5].isPressed = true;
     println("Try again clicked");
@@ -701,34 +728,34 @@ void mouseClicked()
 
    // choosing the fire extinguisher options buttons
 
-  else if (mouseX >= choosingFireExtinguisherOptionsButtons[0].x && mouseX <= (choosingFireExtinguisherOptionsButtons[0].x + choosingFireExtinguisherOptionsButtons[0].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[0].y && mouseY <= (choosingFireExtinguisherOptionsButtons[0].y + choosingFireExtinguisherOptionsButtons[0].buttonHeight)  && state == 2)
+  else if (mouseX >= choosingFireExtinguisherOptionsButtons[0].x && mouseX <= (choosingFireExtinguisherOptionsButtons[0].x + choosingFireExtinguisherOptionsButtons[0].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[0].y && mouseY <= (choosingFireExtinguisherOptionsButtons[0].y + choosingFireExtinguisherOptionsButtons[0].buttonHeight)  && state == choosingFireExtinguisherScenarioState)
   {
     choosingFireExtinguisherOptionsButtons[0].isPressed = true;
     println("powder clicked");
     choosingFireExtinguisherState = 1;
-  } else if (mouseX >= choosingFireExtinguisherOptionsButtons[1].x && mouseX <= (choosingFireExtinguisherOptionsButtons[1].x + choosingFireExtinguisherOptionsButtons[1].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[1].y && mouseY <= (choosingFireExtinguisherOptionsButtons[1].y + choosingFireExtinguisherOptionsButtons[1].buttonHeight)  && state == 2)
+  } else if (mouseX >= choosingFireExtinguisherOptionsButtons[1].x && mouseX <= (choosingFireExtinguisherOptionsButtons[1].x + choosingFireExtinguisherOptionsButtons[1].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[1].y && mouseY <= (choosingFireExtinguisherOptionsButtons[1].y + choosingFireExtinguisherOptionsButtons[1].buttonHeight)  && state == choosingFireExtinguisherScenarioState)
   {
     choosingFireExtinguisherOptionsButtons[1].isPressed = true;
     println("foam clicked");
     choosingFireExtinguisherState = 2;
-  } else if (mouseX >= choosingFireExtinguisherOptionsButtons[2].x && mouseX <= (choosingFireExtinguisherOptionsButtons[2].x + choosingFireExtinguisherOptionsButtons[2].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[2].y && mouseY <= (choosingFireExtinguisherOptionsButtons[2].y + choosingFireExtinguisherOptionsButtons[2].buttonHeight)  && state == 2)
+  } else if (mouseX >= choosingFireExtinguisherOptionsButtons[2].x && mouseX <= (choosingFireExtinguisherOptionsButtons[2].x + choosingFireExtinguisherOptionsButtons[2].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[2].y && mouseY <= (choosingFireExtinguisherOptionsButtons[2].y + choosingFireExtinguisherOptionsButtons[2].buttonHeight)  && state == choosingFireExtinguisherScenarioState)
   {
     callOptionsButtons[2].isPressed = true;
     println("Water clicked");
     choosingFireExtinguisherState = 3;
-  } else if (mouseX >= choosingFireExtinguisherOptionsButtons[3].x && mouseX <= (choosingFireExtinguisherOptionsButtons[3].x + choosingFireExtinguisherOptionsButtons[3].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[3].y && mouseY <= (choosingFireExtinguisherOptionsButtons[3].y + choosingFireExtinguisherOptionsButtons[3].buttonHeight)  && state == 2)
+  } else if (mouseX >= choosingFireExtinguisherOptionsButtons[3].x && mouseX <= (choosingFireExtinguisherOptionsButtons[3].x + choosingFireExtinguisherOptionsButtons[3].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[3].y && mouseY <= (choosingFireExtinguisherOptionsButtons[3].y + choosingFireExtinguisherOptionsButtons[3].buttonHeight)  && state == choosingFireExtinguisherScenarioState)
   {
     choosingFireExtinguisherOptionsButtons[3].isPressed = true;
     println("CO2 clicked");
     choosingFireExtinguisherState = 4;
   } 
-  else if (mouseX >= choosingFireExtinguisherOptionsButtons[4].x && mouseX <= (choosingFireExtinguisherOptionsButtons[4].x + choosingFireExtinguisherOptionsButtons[4].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[4].y && mouseY <= (choosingFireExtinguisherOptionsButtons[4].y + choosingFireExtinguisherOptionsButtons[4].buttonHeight)  && state == 2)
+  else if (mouseX >= choosingFireExtinguisherOptionsButtons[4].x && mouseX <= (choosingFireExtinguisherOptionsButtons[4].x + choosingFireExtinguisherOptionsButtons[4].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[4].y && mouseY <= (choosingFireExtinguisherOptionsButtons[4].y + choosingFireExtinguisherOptionsButtons[4].buttonHeight)  && state == choosingFireExtinguisherScenarioState)
   {
     choosingFireExtinguisherOptionsButtons[4].isPressed = true;
     println("all fire extinguishers clicked");
     choosingFireExtinguisherState = 5;
   }
-  else if (mouseX >= choosingFireExtinguisherOptionsButtons[5].x && mouseX <= (choosingFireExtinguisherOptionsButtons[5].x + choosingFireExtinguisherOptionsButtons[5].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[5].y && mouseY <= (choosingFireExtinguisherOptionsButtons[5].y + choosingFireExtinguisherOptionsButtons[5].buttonHeight)  && state == 2)
+  else if (mouseX >= choosingFireExtinguisherOptionsButtons[5].x && mouseX <= (choosingFireExtinguisherOptionsButtons[5].x + choosingFireExtinguisherOptionsButtons[5].buttonWidth) && mouseY >= choosingFireExtinguisherOptionsButtons[5].y && mouseY <= (choosingFireExtinguisherOptionsButtons[5].y + choosingFireExtinguisherOptionsButtons[5].buttonHeight)  && state == choosingFireExtinguisherScenarioState)
   {
     choosingFireExtinguisherOptionsButtons[5].isPressed = true;
     println("continue clicked");
@@ -738,7 +765,7 @@ void mouseClicked()
 
   // choosing how to use the fire extinguishers options buttons
 
-  else if (mouseX >= choosingHowToUseFireExtinguisherButtons[0].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[0].x + choosingHowToUseFireExtinguisherButtons[0].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[0].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[0].y + choosingHowToUseFireExtinguisherButtons[0].buttonHeight)  && state == 3)
+  else if (mouseX >= choosingHowToUseFireExtinguisherButtons[0].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[0].x + choosingHowToUseFireExtinguisherButtons[0].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[0].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[0].y + choosingHowToUseFireExtinguisherButtons[0].buttonHeight)  && state == howToUseFireExtinguisherScenarioState)
   {
     //if(choosingHowToUseFireExtinguisherState == allOptionsLeftState && continueButtonState == 0)
     //{
@@ -749,7 +776,7 @@ void mouseClicked()
     //  continueButtonState = continueToThreeOptionsLeftButton;
       // state = 4; // TEMPORARY --> CHANGE IT WHEN FINISHED DEBUGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //}
-  } else if (mouseX >= choosingHowToUseFireExtinguisherButtons[1].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[1].x + choosingHowToUseFireExtinguisherButtons[1].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[1].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[1].y + choosingHowToUseFireExtinguisherButtons[1].buttonHeight)  && state == 3)
+  } else if (mouseX >= choosingHowToUseFireExtinguisherButtons[1].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[1].x + choosingHowToUseFireExtinguisherButtons[1].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[1].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[1].y + choosingHowToUseFireExtinguisherButtons[1].buttonHeight)  && state == howToUseFireExtinguisherScenarioState)
   {
     // if(choosingHowToUseFireExtinguisherState == threeOptionsLeft && continueButtonState == continueToThreeOptionsLeftButton)
     // {
@@ -759,7 +786,7 @@ void mouseClicked()
     //   choosingHowToUseFireExtinguisherState = twoOptionsLeft;
     //   continueButtonState = continueToTwoOptionsLeftButton;
     // }
-  } else if (mouseX >= choosingHowToUseFireExtinguisherButtons[2].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[2].x + choosingHowToUseFireExtinguisherButtons[2].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[2].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[2].y + choosingHowToUseFireExtinguisherButtons[2].buttonHeight)  && state == 3)
+  } else if (mouseX >= choosingHowToUseFireExtinguisherButtons[2].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[2].x + choosingHowToUseFireExtinguisherButtons[2].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[2].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[2].y + choosingHowToUseFireExtinguisherButtons[2].buttonHeight)  && state == howToUseFireExtinguisherScenarioState)
   {
    //  if(choosingHowToUseFireExtinguisherState == twoOptionsLeft && continueButtonState == continueToTwoOptionsLeftButton)
     // {
@@ -769,7 +796,7 @@ void mouseClicked()
     //   choosingHowToUseFireExtinguisherState = oneOptionLeft;
     //   continueButtonState = continueToOneOptionLeftButton;
     // }
-  } else if (mouseX >= choosingHowToUseFireExtinguisherButtons[3].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[3].x + choosingHowToUseFireExtinguisherButtons[3].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[3].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[3].y + choosingHowToUseFireExtinguisherButtons[3].buttonHeight)  && state == 3)
+  } else if (mouseX >= choosingHowToUseFireExtinguisherButtons[3].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[3].x + choosingHowToUseFireExtinguisherButtons[3].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[3].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[3].y + choosingHowToUseFireExtinguisherButtons[3].buttonHeight)  && state == howToUseFireExtinguisherScenarioState)
   {
     // if(choosingHowToUseFireExtinguisherState == oneOptionLeft && continueButtonState == continueToOneOptionLeftButton)
     // {
@@ -781,135 +808,41 @@ void mouseClicked()
    //  }
   } 
 
-  else if (mouseX >= choosingHowToUseFireExtinguisherButtons[4].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[4].x + choosingHowToUseFireExtinguisherButtons[4].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[4].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[4].y + choosingHowToUseFireExtinguisherButtons[4].buttonHeight)  && state == 3)
+  else if (mouseX >= choosingHowToUseFireExtinguisherButtons[4].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[4].x + choosingHowToUseFireExtinguisherButtons[4].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[4].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[4].y + choosingHowToUseFireExtinguisherButtons[4].buttonHeight)  && state == howToUseFireExtinguisherScenarioState)
   {
     println("try again button clicked");
     choosingHowToUseFireExtinguisherState = 0;
   }
   // continue button
-  else if (mouseX >= choosingHowToUseFireExtinguisherButtons[5].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
+  else if (mouseX >= choosingHowToUseFireExtinguisherButtons[5].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == howToUseFireExtinguisherScenarioState)
   {
     println("continue button clicked");
     state = 4;
-    /*
-    if(choosingHowToUseFireExtinguisherState == allOptionsLeftState && continueButtonState == 0)
-    {
-      choosingHowToUseFireExtinguisherButtons[0].isPressed = true;
-      println("Pull the safety pin clicked");
-      // choosingHowToUseFireExtinguisherState = 1;
-      choosingHowToUseFireExtinguisherState = threeOptionsLeft;
-      continueButtonState = continueToThreeOptionsLeftButton;
-      // state = 4; // TEMPORARY --> CHANGE IT WHEN FINISHED DEBUGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    }
-    if(choosingHowToUseFireExtinguisherState == threeOptionsLeft && continueButtonState == continueToThreeOptionsLeftButton)
-    {
-      choosingHowToUseFireExtinguisherButtons[1].isPressed = true;
-      println("Aim at the base of fire clicked");
-      // choosingHowToUseFireExtinguisherState = 2;
-      choosingHowToUseFireExtinguisherState = twoOptionsLeft;
-      continueButtonState = continueToTwoOptionsLeftButton;
-    }
-    if(choosingHowToUseFireExtinguisherState == twoOptionsLeft && continueButtonState == continueToTwoOptionsLeftButton)
-    {
-      choosingHowToUseFireExtinguisherButtons[2].isPressed = true;
-      println("Squeeze clicked");
-      // choosingHowToUseFireExtinguisherState = 3;
-      choosingHowToUseFireExtinguisherState = oneOptionLeft;
-      continueButtonState = continueToOneOptionLeftButton;
-    }
-    if(choosingHowToUseFireExtinguisherState == oneOptionLeft && continueButtonState == continueToOneOptionLeftButton)
-    {
-      choosingHowToUseFireExtinguisherButtons[3].isPressed = true;
-      println("Sweep clicked");
-      // choosingHowToUseFireExtinguisherState = 4;
-      choosingHowToUseFireExtinguisherState = passState;
-      continueButtonState = continueToPassButton;
-    }
-    if(choosingHowToUseFireExtinguisherState == passState && continueButtonState == continueToPassButton)
-    {
-      choosingHowToUseFireExtinguisherButtons[4].isPressed = true;
-      println("Continue clicked");
-      // choosingHowToUseFireExtinguisherState = 5;
-      state = 4; // next scene  
-      continueButtonState = continueToNextSceneButton;
-    }
-    */
-    // showOptionsForChoosingHowToUseFireExinguisher();
-
-  } 
-  /*else if (mouseX >= choosingHowToUseFireExtinguisherButtons[5].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
-  {
-    choosingHowToUseFireExtinguisherButtons[5].isPressed = true;
-    println("Continue clicked");
-    // choosingHowToUseFireExtinguisherState = 6;
-    choosingHowToUseFireExtinguisherState += 1;
-  }
-  */
-  /*
-   else if (mouseX >= choosingHowToUseFireExtinguisherButtons[6].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
-  {
-    choosingHowToUseFireExtinguisherButtons[6].isPressed = true;
-    println("Try again clicked");
-    choosingHowToUseFireExtinguisherState = 7;
-  }
-   else if (mouseX >= choosingHowToUseFireExtinguisherButtons[7].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
-  {
-    choosingHowToUseFireExtinguisherButtons[7].isPressed = true;
-    println("Try again clicked");
-    choosingHowToUseFireExtinguisherState = 8;
-  }
-   else if (mouseX >= choosingHowToUseFireExtinguisherButtons[8].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
-  {
-    choosingHowToUseFireExtinguisherButtons[8].isPressed = true;
-    println("Try again clicked");
-    choosingHowToUseFireExtinguisherState = 9;
-  }
-   else if (mouseX >= choosingHowToUseFireExtinguisherButtons[9].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
-  {
-    choosingHowToUseFireExtinguisherButtons[9].isPressed = true;
-    println("Try again clicked");
-    choosingHowToUseFireExtinguisherState = 10;
-  }
-   else if (mouseX >= choosingHowToUseFireExtinguisherButtons[10].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
-  {
-    choosingHowToUseFireExtinguisherButtons[10].isPressed = true;
-    println("Try again clicked");
-    choosingHowToUseFireExtinguisherState = 11;
-  }
-   else if (mouseX >= choosingHowToUseFireExtinguisherButtons[11].x && mouseX <= (choosingHowToUseFireExtinguisherButtons[5].x + choosingHowToUseFireExtinguisherButtons[5].buttonWidth) && mouseY >= choosingHowToUseFireExtinguisherButtons[5].y && mouseY <= (choosingHowToUseFireExtinguisherButtons[5].y + choosingHowToUseFireExtinguisherButtons[5].buttonHeight)  && state == 3)
-  {
-    choosingHowToUseFireExtinguisherButtons[11].isPressed = true;
-    println("Try again clicked");
-    choosingHowToUseFireExtinguisherState = 12;
-  }
-  */
-
-
 
 
   // which exit path to take options buttons
 
-  else if (mouseX >= choosingTheExitPathButtons[0].x && mouseX <= (choosingTheExitPathButtons[0].x + choosingTheExitPathButtons[0].buttonWidth) && mouseY >= choosingTheExitPathButtons[0].y && mouseY <= (choosingTheExitPathButtons[0].y + choosingTheExitPathButtons[0].buttonHeight)  && state == 4)
+  else if (mouseX >= choosingTheExitPathButtons[0].x && mouseX <= (choosingTheExitPathButtons[0].x + choosingTheExitPathButtons[0].buttonWidth) && mouseY >= choosingTheExitPathButtons[0].y && mouseY <= (choosingTheExitPathButtons[0].y + choosingTheExitPathButtons[0].buttonHeight)  && state == choosingTheCorrectExitPathScenarioState)
   {
     choosingTheExitPathButtons[0].isPressed = true;
     println("Door 1 clicked");
     choosingPathState = 1;
-  } else if (mouseX >= choosingTheExitPathButtons[1].x && mouseX <= (choosingTheExitPathButtons[1].x + choosingTheExitPathButtons[1].buttonWidth) && mouseY >= choosingTheExitPathButtons[1].y && mouseY <= (choosingTheExitPathButtons[1].y + choosingTheExitPathButtons[1].buttonHeight)  && state == 4)
+  } else if (mouseX >= choosingTheExitPathButtons[1].x && mouseX <= (choosingTheExitPathButtons[1].x + choosingTheExitPathButtons[1].buttonWidth) && mouseY >= choosingTheExitPathButtons[1].y && mouseY <= (choosingTheExitPathButtons[1].y + choosingTheExitPathButtons[1].buttonHeight)  && state == choosingTheCorrectExitPathScenarioState)
   {
     choosingTheExitPathButtons[1].isPressed = true;
     println("Door 2 clicked");
     choosingPathState = 2;
-  } else if (mouseX >= choosingTheExitPathButtons[2].x && mouseX <= (choosingTheExitPathButtons[2].x + choosingTheExitPathButtons[2].buttonWidth) && mouseY >= choosingTheExitPathButtons[2].y && mouseY <= (choosingTheExitPathButtons[2].y + choosingTheExitPathButtons[2].buttonHeight)  && state == 4)
+  } else if (mouseX >= choosingTheExitPathButtons[2].x && mouseX <= (choosingTheExitPathButtons[2].x + choosingTheExitPathButtons[2].buttonWidth) && mouseY >= choosingTheExitPathButtons[2].y && mouseY <= (choosingTheExitPathButtons[2].y + choosingTheExitPathButtons[2].buttonHeight)  && state == choosingTheCorrectExitPathScenarioState)
   {
     choosingTheExitPathButtons[2].isPressed = true;
     println("Exit sign clicked");
     choosingPathState = 3;
-  } else if (mouseX >= choosingTheExitPathButtons[3].x && mouseX <= (choosingTheExitPathButtons[3].x + choosingTheExitPathButtons[3].buttonWidth) && mouseY >= choosingTheExitPathButtons[3].y && mouseY <= (choosingTheExitPathButtons[3].y + choosingTheExitPathButtons[3].buttonHeight)  && state == 4)
+  } else if (mouseX >= choosingTheExitPathButtons[3].x && mouseX <= (choosingTheExitPathButtons[3].x + choosingTheExitPathButtons[3].buttonWidth) && mouseY >= choosingTheExitPathButtons[3].y && mouseY <= (choosingTheExitPathButtons[3].y + choosingTheExitPathButtons[3].buttonHeight)  && state == choosingTheCorrectExitPathScenarioState)
   {
     choosingTheExitPathButtons[3].isPressed = true;
     println("Try again clicked");
     choosingPathState = 4;
-  } else if (mouseX >= choosingTheExitPathButtons[4].x && mouseX <= (choosingTheExitPathButtons[4].x + choosingTheExitPathButtons[4].buttonWidth) && mouseY >= choosingTheExitPathButtons[4].y && mouseY <= (choosingTheExitPathButtons[4].y + choosingTheExitPathButtons[4].buttonHeight)  && state == 4)
+  } else if (mouseX >= choosingTheExitPathButtons[4].x && mouseX <= (choosingTheExitPathButtons[4].x + choosingTheExitPathButtons[4].buttonWidth) && mouseY >= choosingTheExitPathButtons[4].y && mouseY <= (choosingTheExitPathButtons[4].y + choosingTheExitPathButtons[4].buttonHeight)  && state == choosingTheCorrectExitPathScenarioState)
   {
     choosingTheExitPathButtons[4].isPressed = true;
     println("Continue clicked");
@@ -917,7 +850,7 @@ void mouseClicked()
   }
 
   // the end of the simulation buttons
-  else if (mouseX >= quitButton.x && mouseX <= (quitButton.x + quitButton.buttonWidth) && mouseY >= quitButton.y && mouseY <= (quitButton.y + quitButton.buttonHeight)  && state == 5)
+  else if (mouseX >= quitButton.x && mouseX <= (quitButton.x + quitButton.buttonWidth) && mouseY >= quitButton.y && mouseY <= (quitButton.y + quitButton.buttonHeight)  && state == goingToTheCorrectExitPathScenarioState)
   {
     quitButton.isPressed = true;
     println("Quit button clicked");
