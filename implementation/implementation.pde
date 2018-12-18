@@ -27,58 +27,57 @@ Movie fireAlarmAndCallMovie, choosingTheFireExtinguisherMovie, findFireExtinguis
 
 
 
-
+// the value of state determines the scene that is displayed
 int state = 0;
 
 
 // different scenes states
-int mainMenuScenarioState = 0;
-int fireAlarmAndCallingScenarioState = 1;
-int choosingFireExtinguisherScenarioState = 2;
-int howToUseFireExtinguisherScenarioState = 3;
-int choosingTheCorrectExitPathScenarioState = 4;
-int goingToTheCorrectExitPathScenarioState = 5;
+int mainMenuScenarioState = 0; // main menu state
+int fireAlarmAndCallingScenarioState = 1; // fire alarm and calling scene state
+int choosingFireExtinguisherScenarioState = 2; // choosing fire extinguisher scene state 
+int howToUseFireExtinguisherScenarioState = 3; // how to use fire extinguisher scene state
+int choosingTheCorrectExitPathScenarioState = 4; // choosing the correct exit path scene state
+int goingToTheCorrectExitPathScenarioState = 5; // going to the correct exit path scene state
 
 
 
-// states inside the different scenarios --> different options
+// states inside the different scenarios --> different options inside each scene
 
 // phone call scenario options
-int callState = 0;
-// callState options states
-int callState112 = 1;
-int callStateMother = 2;
-int callState114 = 3;
-int callStateBestFriend = 4;
-int callStateContinue = 5;
+int callState = 0; // default call scene
+int callState112 = 1; // calling 112 call scene
+int callStateMother = 2; // calling mother call scene
+int callState114 = 3; // calling 114 call scene
+int callStateBestFriend = 4; // calling best friend call scene
+int callStateContinue = 5; // clicking in continue call scene
 
 // choosing fire extinguisher scenario options
-int choosingFireExtinguisherState = 0;
+int choosingFireExtinguisherState = 0; // the state that defines what the user interacts with inside of the choosing which fire extinguisher to use
 // choosing fire extinguisher options states
-int allFireExtinguisherState = 0;
-int dryPowderState = 1;
-int foamState = 2;
-int waterState = 3;
-int co2State = 4;
-int choosingFireExtinguisherTryAgainState = 5;
-int choosingFireExtinguisherContinueState = 6;
+int allFireExtinguisherState = 0; // default choosing the fire extinguisher scene
+int dryPowderState = 1; // dry powder choosing the fire extinguisher scene
+int foamState = 2; // foam state in choosing the fire extinguisher scene
+int waterState = 3; // water state in choosing the fire extinguisher scene
+int co2State = 4; // co2 state in choosing the fire extinguisher scene
+int choosingFireExtinguisherTryAgainState = 5; // try again state because the answer was wrong state in choosing the fire extinguisher scene
+int choosingFireExtinguisherContinueState = 6; // continue state because answer was right state in choosing the fire extinguisher scene
 
 // how to use fire extinguisher scenario options
-int choosingHowToUseFireExtinguisherState = 0;
+int choosingHowToUseFireExtinguisherState = 0; // the state that defines what the user interacts with inside of the choosing how to use the fire extinguisher scene
 // how to use fire extinguisher options states
-int howToUseAllOptionsState = 0;
-int howToUseCorrectState = 4;
-int [] howToUseWrongState = {1, 2, 3};
+int howToUseAllOptionsState = 0; // the default state in choosing how to use the fire extinguisher scene
+int howToUseCorrectState = 4; // the correct state in choosing how to use the fire extinguisher scene
+int [] howToUseWrongState = {1, 2, 3}; // the three wrong states in the choosing how to use the fire extinguisher scene 
 
 // choosing the correct exit path scenario options
-int choosingPathState = 0;
+int choosingPathState = 0; // the state that defines what the user interacts with indside of the choosing the correct exit path scene
 // choosing the correct exit path options states
-int threeDoorsState = 0;
-int threeDoorsBridgeState = 1;
-int threeDoorsHallwayState = 2;
-int threeDoorsExitSignState = 3;
-int threeDoorsTryAgainState = 4;
-int threeDoorsContinueState = 5;
+int threeDoorsState = 0; // default state in the choosing the exit path scene
+int threeDoorsBridgeState = 1; // bridge state in the choosing the exit path scene
+int threeDoorsHallwayState = 2; // hallway dooe state in choosing the exit path scene
+int threeDoorsExitSignState = 3; // correct emergency exit state in choosing the exit path scene
+int threeDoorsTryAgainState = 4; // wrong state in the choosing the exit sign scene
+int threeDoorsContinueState = 5; // continue because the user is correct in the choosing the exit path scene
 
 
 int sequenceState = 0;
@@ -88,26 +87,6 @@ int continueButtonState = 0;
 int allOptionsLeftState = 0, threeOptionsLeft = 1, twoOptionsLeft = 2, oneOptionLeft = 3, passState = 4; // different states in sequence
 int continueToThreeOptionsLeftButton = 1, continueToTwoOptionsLeftButton = 2, continueToOneOptionLeftButton = 3, continueToPassButton = 4, continueToNextSceneButton = 5;
 
-
-// the continueButtons
-int numberOfcontinueButtons = 10;
-Button[] continueButtons = new Button[numberOfcontinueButtons];
-
-
-// show scenes
-boolean [] showScene = new boolean[6];
-
-
-// try again buttons, one for each scene with user interaction
-Button [] tryAgain = new Button[4];
-/*
-  
- --> Phone call
- --> Choosing fire extinguisher
- --> Choosing how to use the fire extinguisher
- --> choosing the path
- 
- */
 
 // amount of buttons for the call
 Button [] callOptionsButtons = new Button[6];
@@ -130,209 +109,186 @@ Button [] choosingFireExtinguisherOptionsButtons = new Button[6];
  --> Foam
  --> Dry powder
  --> Continue
+ --> try again
  
  */
 
 // button options for choosing how to use the fire extinguisher
 Button [] choosingHowToUseFireExtinguisherButtons = new Button[6];
+/*
+
+  --> pull out safety pin
+  --> aim at the base of the fire
+  --> squezze slow and even on the lever
+  --> sweep the nozzle horizontally
+  --> try again
+  --> continue
+
+*/
 
 
 // button options for choosing the exit path
 Button [] choosingTheExitPathButtons = new Button[5];
+/*
 
+  --> the bridge
+  --> hallway
+  --> exit sign
+  --> try again
+  --> continue
 
+*/
+
+// simulate button of the main menu
 Button simulateButton;
 
+// quit button to quit the simulation
 Button quitButton;
-
-
-// Timer
-int time;
-
-
-/*
- states --> one for each scene
- 
- showScene[0] --> main menu with simulate button
- 
- 
- showScene[1] --> fire and clicking fire alarm video. The call options appear. Create a try again button for scene1
- --> if the user clicks on 112 -> showScene[2] == true
- --> else if the user clicks on:
- --> 114 --> show iamge of 114 to explain why it's wrong, and the try again button
- --> mother --> show image of mother to explain why it's wrong, and the try again button
- --> best friend --> show image of best friend to explain why it's wrong, and the try again button
- --> then the user restarts that scene --> showScene[1] == true
- 
- 
- showScene[2] --> video for choosing fire extinguisher and fire extinguisher options appear
- showScene[3] -->  video for choosing how to use the fire extinguisher appears
- --> how to use fire extinguisher options appear
- showScene[4] --> video for seaarching for an exit door
- --> door options buttons and images appear
- showScene[5] --> the user escapes from the room successfully
- --> the quit menu appears
- 
- 
- */
 
 void setup()
 {
-  size(1920, 1080);
+  size(1920, 1080); // the same size as the videos that will play
   // fullScreen(); // to make the size of the interface the same as the device's screen 
 
   frameRate(30); // framerate of the video
 
-  // declaring the movies
-  fireAlarmAndCallMovie = new Movie(this, "Animated video/searching for fire alarm and calling.mp4"); // declaring the movie
-  choosingTheFireExtinguisherMovie = new Movie(this, "Animated video/choosing fire extinguisher.mp4"); // call emergency movie
-  findFireExtinguishersMovie = new Movie(this, "Animated video/choosing how to use fire extinguisher.mp4");
-  searchingForFireExitMovie = new Movie(this, "Animated video/searching for fire exit sign.mp4");
-  goingToFireEscapeMovie = new Movie(this, "Animated video/going to fire escape.mp4");
+  // declaring and initializing the simulation movies
+  fireAlarmAndCallMovie = new Movie(this, "Animated video/searching for fire alarm and calling.mp4"); // video that shows the fire in the microwave searching for the fire alarm and calling
+  choosingTheFireExtinguisherMovie = new Movie(this, "Animated video/choosing fire extinguisher.mp4"); // video of going towards the fire extinguishers to choose the correct one
+  findFireExtinguishersMovie = new Movie(this, "Animated video/choosing how to use fire extinguisher.mp4"); // video that goes towards the microwave to choose how to extinguish the fire
+  searchingForFireExitMovie = new Movie(this, "Animated video/searching for fire exit sign.mp4"); // video of searching for the correct exit
+  goingToFireEscapeMovie = new Movie(this, "Animated video/going to fire escape.mp4"); // video of going towards the emergency exit
 
+
+  // declaring and initializing the simulation images
 
   // main menu image
-  mainMenuIm = loadImage("Illustrator files/Menu_simulation-01.png");
+  mainMenuIm = loadImage("Illustrator files/Menu_simulation-01.png"); // image shown when the program is executed. It is the default image shown in the program --> the main menu
 
   // loading the phone call images
-  im112 = loadImage("Illustrator files/Phone_112.png");
-  im114 = loadImage("Illustrator files/Phone_114.png");
-  bestFriendIm = loadImage("Illustrator files/Phone_Bestfriend.png");
-  motherIm = loadImage("Illustrator files/Phone_Mother.png");
-  chooseCallIm = loadImage("Illustrator files/Phone_options.png");
+  im112 = loadImage("Illustrator files/Phone_112.png"); // image that will display if the user chooses the 112 call option
+  im114 = loadImage("Illustrator files/Phone_114.png"); // image that will display if the user chooses the 114 call option
+  bestFriendIm = loadImage("Illustrator files/Phone_Bestfriend.png"); // image that will display if the user chooses the best friend call option
+  motherIm = loadImage("Illustrator files/Phone_Mother.png"); // image that will display if the user chooses the mother call option
+  chooseCallIm = loadImage("Illustrator files/Phone_options.png"); // image that displays all of the options to call --> It's the default image
 
-  // loading the choosing the fire extinguisher images
-  allFireExtinguishersIm = loadImage("Illustrator files/allFireExtinguishers.png");
-  fireExtinguisherCO2Im = loadImage("New/FireExtinguishers_info_co2.png");
-  fireExtinguisherDryPowderIm = loadImage("New/FireExtinguishers_info_dry powder.png");
-  fireExtinguisherFoamIm = loadImage("New/FireExtinguishers_info_foam.png");
-  fireExtinguisherWaterIm = loadImage("New/FireExtinguishers_info_Water.png");
+  // choosing the fire extinguisher images
+  allFireExtinguishersIm = loadImage("Illustrator files/allFireExtinguishers.png"); // image that displays all of the fire extinguishers. It's the default image in the choosing the correct fire extinguisher scene
+  fireExtinguisherCO2Im = loadImage("New/FireExtinguishers_info_co2.png"); // image that will display if the user chooses the CO2 fire extinguisher option
+  fireExtinguisherDryPowderIm = loadImage("New/FireExtinguishers_info_dry powder.png"); // image that will display if the user chooses the dry powder fire extinguisher option
+  fireExtinguisherFoamIm = loadImage("New/FireExtinguishers_info_foam.png"); // image that will display if the user chooses the foam fire extinguisher option
+  fireExtinguisherWaterIm = loadImage("New/FireExtinguishers_info_Water.png"); // image that will display if the user chooses the water fire extinguisher option
 
-  /*
-  // loading the choose how to use the fire extinguisher images
-  howToOptionsIm = loadImage("New/How_to_options.png");
-  howToPullIm = loadImage("New/How_to_Pull.png");
-  howToOneIm = loadImage("New/How_to_onecorrect.png");
-  howToAimIm = loadImage("New/How_to_aim.png");
-  howToTwoIm = loadImage("New/How_to_twocorrect.png");
-  howToSqueezeIm = loadImage("New/How_to_squeeze.png");
-  howToThreeIm = loadImage("New/How_to_threecorrect.png");
-  howToSweepIm = loadImage("New/How_to_sweep.png");
-  howToCorrectIm = loadImage("New/How_to_correct.png");
-  howToWrongIm = loadImage("New/How_to_wrong.png");
-  */
-  howToUseFireExtinguisherAllOptionsIm = loadImage("New/how to use fire extinguisher.png");
-  howToUseFireExtinguisherCorrectIm = loadImage("New/how to use fire extinguisher correct.png");
-  howToUseFireExtinguisherWrongIm = loadImage("New/how to use fire extinguisher wrong.png");
+  howToUseFireExtinguisherAllOptionsIm = loadImage("New/how to use fire extinguisher.png"); // image that displays all of the options in the choosing how to use the fire extinguisher scene
+  howToUseFireExtinguisherCorrectIm = loadImage("New/how to use fire extinguisher correct.png"); // image that displays if the user chooses the correct way to use the fire extinguisher (PASS)
+  howToUseFireExtinguisherWrongIm = loadImage("New/how to use fire extinguisher wrong.png"); // image that displays if the user chooses the wrong way to use the fire extinguisher
 
   // path to take images
-  threeDoorsOptionsIm = loadImage("Illustrator files/threedoors_options.png");
-  threeDoorsHallwayIm = loadImage("New/threedoors_Hallway.png");
-  threeDoorsBridgeIm = loadImage("New/threedoors_bridge.png");
-  threeDoorsExitIm = loadImage("New/threedoors_Exit door.png");
+  threeDoorsOptionsIm = loadImage("Illustrator files/threedoors_options.png"); // image that displays all of the options in the choosing the correct exit path scene. It's the defualt image of this scene
+  threeDoorsHallwayIm = loadImage("New/threedoors_Hallway.png"); // image that displays if the user chooses the hallway option
+  threeDoorsBridgeIm = loadImage("New/threedoors_bridge.png"); // image that shows if the user chooses the bridge option
+  threeDoorsExitIm = loadImage("New/threedoors_Exit door.png"); // image that displays if the user chooses the emergency exit ( with the exit sign on top of the door)
 
   // end of simulation image
-  endOfSimulationIm = loadImage("Illustrator files/End_simulation.png");
+  endOfSimulationIm = loadImage("Illustrator files/End_simulation.png"); // image displayed when the user has finished the simulation
 
 
-  // declaring the continueButtons
-
-  //  x, y, width of button, height of button
-  simulateButton = new Button(810, 640, 1100 - 810, 740 - 640, ""); // the simulate button
+  // declaring and initializing the buttons of the program
+  //  the buttons have as parameters the coordinates of x and y, as well as the width and height of the buttons. They are of type integer (int)
+  
+  // the main menu buttons
+  simulateButton = new Button(810, 640, 1100 - 810, 740 - 640); // the simulate button
 
   // call option buttons
-  callOptionsButtons[0] = new Button(1160, 350, 600, 90, ""); // 112
-  callOptionsButtons[1] = new Button(1160, 450, 600, 90, ""); // 114
-  callOptionsButtons[2] = new Button(1160, 550, 600, 90, ""); // mother
-  callOptionsButtons[3] = new Button(1160, 650, 600, 90, ""); // friend
-  callOptionsButtons[4] = new Button(605, 795, 300, 100, ""); // continue
-  callOptionsButtons[5] = new Button(610, 800, 300, 100, ""); // try again
+  callOptionsButtons[0] = new Button(1160, 350, 600, 90); // 112
+  callOptionsButtons[1] = new Button(1160, 450, 600, 90); // 114
+  callOptionsButtons[2] = new Button(1160, 550, 600, 90); // mother
+  callOptionsButtons[3] = new Button(1160, 650, 600, 90); // friend
+  callOptionsButtons[4] = new Button(605, 795, 300, 100); // continue
+  callOptionsButtons[5] = new Button(610, 800, 300, 100); // try again
 
 
   // choosing fire extinguisher scene buttons
-  choosingFireExtinguisherOptionsButtons[0] = new Button(375, 275, 225, 500, ""); // Powder
-  choosingFireExtinguisherOptionsButtons[1] = new Button(640, 340, 225, 500, ""); // foam
-  choosingFireExtinguisherOptionsButtons[2] = new Button(940, 280, 225, 500, ""); // Water
-  choosingFireExtinguisherOptionsButtons[3] = new Button(1260, 300, 225, 500, ""); // CO2
-  choosingFireExtinguisherOptionsButtons[4] = new Button(460, 840, 300, 100, ""); // try again
-  choosingFireExtinguisherOptionsButtons[5] = new Button(840, 840, 300, 100, ""); // continue
-
+  choosingFireExtinguisherOptionsButtons[0] = new Button(375, 275, 225, 500); // Powder
+  choosingFireExtinguisherOptionsButtons[1] = new Button(640, 340, 225, 500); // foam
+  choosingFireExtinguisherOptionsButtons[2] = new Button(940, 280, 225, 500); // Water
+  choosingFireExtinguisherOptionsButtons[3] = new Button(1260, 300, 225, 500); // CO2
+  choosingFireExtinguisherOptionsButtons[4] = new Button(460, 840, 300, 100); // try again
+  choosingFireExtinguisherOptionsButtons[5] = new Button(840, 840, 300, 100); // continue
 
   // choosing how to use the fire extinguisher buttons
-  
-  choosingHowToUseFireExtinguisherButtons[0] = new Button(430, 310, 400, 120, ""); // pull out safety pin
-  choosingHowToUseFireExtinguisherButtons[1] = new Button(430, 780, 400, 120, ""); // aim at the base of the fire
-  choosingHowToUseFireExtinguisherButtons[2] = new Button(430, 465, 400, 120, ""); // squeeze slow and even on the lever
-  choosingHowToUseFireExtinguisherButtons[3] = new Button(430, 620, 400, 120, ""); // sweep the nozzle horizontally
-  /*
-  choosingHowToUseFireExtinguisherButtons[4] = new Button(1160, 814, 320, 100, ""); // continue in pull out safety pin
-  choosingHowToUseFireExtinguisherButtons[5] = new Button(1460, 814, 320, 100, ""); // continue in aim at the base of the fire
-  choosingHowToUseFireExtinguisherButtons[6] = new Button(1160, 914, 320, 100, ""); // continue in squeeze
-  choosingHowToUseFireExtinguisherButtons[7] = new Button(1460, 914, 320, 100, ""); // continue in sweep
-  choosingHowToUseFireExtinguisherButtons[8] = new Button(100, 100, 100, 100, ""); //
-  choosingHowToUseFireExtinguisherButtons[9] = new Button(100, 100, 100, 100, ""); //
-  */
-  choosingHowToUseFireExtinguisherButtons[4] = new Button(828, 813, 320, 100, ""); // Try again -> show the 'wrong image'
-  choosingHowToUseFireExtinguisherButtons[5] = new Button(1160, 810, 320, 100, ""); // continue -> show the 'pass' image
+  choosingHowToUseFireExtinguisherButtons[0] = new Button(430, 310, 400, 120); // pull out safety pin
+  choosingHowToUseFireExtinguisherButtons[1] = new Button(430, 780, 400, 120); // aim at the base of the fire
+  choosingHowToUseFireExtinguisherButtons[2] = new Button(430, 465, 400, 120); // squeeze slow and even on the lever
+  choosingHowToUseFireExtinguisherButtons[3] = new Button(430, 620, 400, 120); // sweep the nozzle horizontally
+  choosingHowToUseFireExtinguisherButtons[4] = new Button(828, 813, 320, 100); // Try again -> show the 'wrong image'
+  choosingHowToUseFireExtinguisherButtons[5] = new Button(1160, 810, 320, 100); // continue -> show the 'pass' image
   
 
   // choosing the exit path options buttons
-  choosingTheExitPathButtons[0] = new Button(300, 100, 780 - 300, 670, ""); // 
-  choosingTheExitPathButtons[1] = new Button(790, 100, 380, 662, ""); // 
-  choosingTheExitPathButtons[2] = new Button(790 + 480, 100, 480, 670, ""); // 
-  choosingTheExitPathButtons[3] = new Button(650, 780, 300, 100, ""); // try again
-  choosingTheExitPathButtons[4] = new Button(1040, 780, 300, 100, ""); // continue
+  choosingTheExitPathButtons[0] = new Button(300, 100, 780 - 300, 670); // bridge
+  choosingTheExitPathButtons[1] = new Button(790, 100, 380, 662); // hallway
+  choosingTheExitPathButtons[2] = new Button(790 + 480, 100, 480, 670); // exit sign
+  choosingTheExitPathButtons[3] = new Button(650, 780, 300, 100); // try again
+  choosingTheExitPathButtons[4] = new Button(1040, 780, 300, 100); // continue
 
 
-  // the quit button to end the simulation
-  quitButton = new Button(800, 500, 400, 200);
-
-   // state = 4;
-
+  // the end of the simulation scene button
+  quitButton = new Button(800, 500, 400, 200); // the quit button to end the simulation
 }
 
 
-// Called every time a new frame is available to read
+
+//  This event function is run when a new movie frame is available. 
+//  The read() method is used to capture this frame. 
+//  If there is more than one movie in the program, movieEvent() is called each time any of the movies has a new frame available 
+// This function is called every time a new frame is available to read.
+//  It's an event, and it's necessary for the movies to play accordingly
 void movieEvent(Movie m)
 {
+  //  .read() --> Reads the current frame of the movie
   m.read();
 }
+
+
+
 
 void draw()
 {
     imageMode(CENTER);
 
-  // println("MouseX: " + mouseX + "  |  MouseY: " + mouseY);
+  // println("MouseX: " + mouseX + "  |  MouseY: " + mouseY); // shows where the cursor is while the program is running. Used mainly to know the coordinates of the buttons
   
-  showScene();
-  update();
+  showScene(); // function that displays the scene depending on the state
+  update(); // checks if the simulate button is pressed. In this case, it will switch the state of the simulation to the finding the fire alarm and calling state
 }
 
+// function that displays the scene according to the state of the program
 void showScene()
 {
-  if (state == mainMenuScenarioState) // if the main menu scene is true
+  if (state == mainMenuScenarioState) // if the state of the program is the same as the main menu state
   {
-    showMainMenu();
+    showMainMenu(); // it shows the main menu scene
   }
-  if (state == fireAlarmAndCallingScenarioState) // finding fire alarm and calling
+  if (state == fireAlarmAndCallingScenarioState) // if the state of the program is the same as finding the fire alarm and calling state
   {
-    showScene1();
+    showScene1(); // shows the finding the fire alarm and calling scene
   }
-  if (state == choosingFireExtinguisherScenarioState) // choosing the extinguisher
+  if (state == choosingFireExtinguisherScenarioState) // if the state of the program is the same as choosing the extinguisher state
   {
-    showScene2();
+    showScene2(); // shows the choosing the fire extinguisher scene
   }
-  if (state == howToUseFireExtinguisherScenarioState) // choosing how to use the extinguisher
+  if (state == howToUseFireExtinguisherScenarioState) // if the state of the program is the same as the choosing how to use the fire extinguisher state
   {
-    showScene3();
+    showScene3(); // shows the choosing how to use the fire extinguisher scene
   }
-  if (state == choosingTheCorrectExitPathScenarioState) // choosing the correct exit path
+  if (state == choosingTheCorrectExitPathScenarioState) // if the state of the program is the same as choosing the correct exit path state
   {
-    showScene4();
+    showScene4(); // shows the choosing the exit path scene
   }
-  if (state == goingToTheCorrectExitPathScenarioState) // going to the correct exit path
+  if (state == goingToTheCorrectExitPathScenarioState) // if the state of the program is the same as going to the correct exit path state
   {
-    showScene5();
+    showScene5(); // shows the going to the correct exit path scene
   }
 }
 
@@ -341,56 +297,52 @@ void update()
 {
   if (simulateButton.isPressed == true) // if the simulate button is pressed
   {
-    state = fireAlarmAndCallingScenarioState; // it loads scene 1
+    state = fireAlarmAndCallingScenarioState; // it sets the state of the program to the finding the fire alarm and calling scene
   }
 }
 
 
 
+/*
+This function plays the movie that it receives as a parameter
+Then, if the movie finishes, it returns a true boolean 
+*/
 boolean playMovie(Movie movie)
 {
-  movie.play();
-  imageMode(CENTER);
-  image(movie, width / 2, height / 2, width, height);
+  movie.play(); // Plays the movie one time and stops at the last frame.
+  imageMode(CENTER); // it sets the images in the center of the screen -->  interprets the second and third parameters of image() as the image's center point
+  image(movie, width / 2, height / 2, width, height); // displays the current frame of the movie
   // println(movie + " played");
 
-  if (movie.time() >= movie.duration())
+  if (movie.time() >= movie.duration()) // if the movie's current time is bigger than or equal than the duration of the movie
   { 
     return true; // it finished
-  } else return false;
+  } else return false; // it didn't finish
 }
 
 
-void showMainMenu() //scene 0, state 0
+// this function shows the main menu scene
+void showMainMenu()
 {
-  simulateButton.display(); // the simulate button
-  imageMode(CENTER);
+  imageMode(CENTER); // sets the image to the center of the screen --> it  interprets the second and third parameters of image() as the image's center point
   image(mainMenuIm, width / 2, height /2);
 }
 
-void showScene1() // there is fire, and 
+// shows the finding the fire alarm and calling scene
+void showScene1() 
 {
-  /*
---> fire and clicking fire alarm video. The call options appear. Create a try again button for scene1
-   --> if the user clicks on 112 -> showScene[2] == true
-   --> else if the user clicks on:
-   --> 114 --> show iamge of 114 to explain why it's wrong, and the try again button
-   --> mother --> show image of mother to explain why it's wrong, and the try again button
-   --> best friend --> show image of best friend to explain why it's wrong, and the try again button
-   --> then the user restarts that scene --> showScene[1] == true
-   */
-
-  if (playMovie(fireAlarmAndCallMovie) == true) // if the movie finished playing
+  if (playMovie(fireAlarmAndCallMovie) == true) // it plays the fire alarm movie, and if it ends
   {
-    showOptionsForCall();
+    showOptionsForCall(); // shows the options for the phone call
   }
 }
 
+// shows the searching for the fire extinguishers scene
 void showScene2()
 {
-  if (playMovie(choosingTheFireExtinguisherMovie) == true) // if the movie finished playing
+  if (playMovie(choosingTheFireExtinguisherMovie) == true) // it plays the fire extinguishers movie, and if it ends
   {
-    showOptionsForChoosingFireExtinguishers();
+    showOptionsForChoosingFireExtinguishers(); // shows the options for choosing the fire extinguishers
   }
 }
 
@@ -430,12 +382,6 @@ void showOptionsForCall()
   imageMode(CENTER);
   image(chooseCallIm, width / 2, height / 2);
 
-  for (int i = 0; i < callOptionsButtons.length; i++)
-  {
-    callOptionsButtons[i].display();
-  }
-
-
   if (callState == callState112)
   {
     imageMode(CENTER);
@@ -467,50 +413,36 @@ void showOptionsForCall()
 void showOptionsForChoosingFireExtinguishers()
 {
 
-  // CHANGE THIS SO THAT IF THE FIRE EXTINGUISHER STATE IS DIFFERENT THAN THE
-  // OPTIONS CLICKED, THEN ALL THE EXTINGUISHERS DIASPPEAR,
-  // AND ONLY THE OPTIONS APPEAR. ALSO MAKE THE CONTINUE AND DISAPPEAR BUTTONS FOR 
-  // ALL OF THE OPTIONS (WRONG --> TRY AGAIN || CORRECT --> CONTINUE)
-
 
   // println("Showed options for choosing fire extinguishers");
   // imageMode(CENTER);
   // image(allFireExtinguishersIm, width / 2, height / 2);
 
-  for (int i = 0; i < choosingFireExtinguisherOptionsButtons.length - 2; i++) // minus two because I don't want to display the continue or try again buttons for now
-  {
-    choosingFireExtinguisherOptionsButtons[i].display();
-  }
 
   if(choosingFireExtinguisherState == allFireExtinguisherState)
   {
     imageMode(CENTER);
     image(allFireExtinguishersIm, width / 2, height / 2);
-    choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingFireExtinguisherState == dryPowderState)
   {
     imageMode(CENTER);
     image(fireExtinguisherDryPowderIm, width / 2, height / 2);
-    choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingFireExtinguisherState == foamState)
   {
     imageMode(CENTER);
     image(fireExtinguisherFoamIm, width / 2, height / 2);
-    choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingFireExtinguisherState == waterState)
   {
     imageMode(CENTER);
     image(fireExtinguisherWaterIm, width / 2, height / 2);
-    choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingFireExtinguisherState == co2State)
   {
     imageMode(CENTER);
     image(fireExtinguisherCO2Im, width / 2, height / 2);
-    choosingFireExtinguisherOptionsButtons[5].display(); // continue button
   }
 
   if (choosingFireExtinguisherState == choosingFireExtinguisherTryAgainState)
@@ -528,82 +460,6 @@ void showOptionsForChoosingFireExtinguishers()
 
 void showOptionsForChoosingHowToUseFireExinguisher()
 {
-  // imageMode(CENTER);
-  // image(howToOptionsIm, width / 2, height / 2);
-/*
-  for (int i = 0; i < choosingHowToUseFireExtinguisherButtons.length; i++)
-  {
-    choosingHowToUseFireExtinguisherButtons[i].display();
-  }
-*/
-  /*
-  if (choosingHowToUseFireExtinguisherState == allOptionsLeftState) // default image
-  {
-    imageMode(CENTER);
-    image(howToOptionsIm, width / 2, height / 2);
-  }
-  if (choosingHowToUseFireExtinguisherState == threeOptionsLeft) // pull out safety pin
-  {
-    imageMode(CENTER);
-    image(howToPullIm, width / 2, height / 2);
-    // choosingHowToUseFireExtinguisherButtons[0].display();
-  }
-  if (continueButtonState == continueToThreeOptionsLeftButton) // continue in pull out safety pin
-  {
-    imageMode(CENTER);
-    image(howToOneIm, width / 2, height / 2);
-    // choosingHowToUseFireExtinguisherButtons[4].display();
-  }
-  if (choosingHowToUseFireExtinguisherState == 3) // aim at the base of fire
-  {
-    imageMode(CENTER);
-    image(howToAimIm, width / 2, height / 2);
-    // choosingHowToUseFireExtinguisherButtons[1].display();
-  }
-  if (choosingHowToUseFireExtinguisherState == 4) // continue in aim at the base of fire
-  {
-    imageMode(CENTER);
-    image(howToTwoIm, width / 2, height / 2);
-    // choosingHowToUseFireExtinguisherButtons[5].display();
-  }
-  if (choosingHowToUseFireExtinguisherState == 5) // squeeze 
-  {
-    imageMode(CENTER);
-    image(howToSqueezeIm, width / 2, height / 2);
-    // choosingHowToUseFireExtinguisherButtons[2].display();
-  }
-  if (choosingHowToUseFireExtinguisherState == 6) // continue in squeeze 
-  {
-    imageMode(CENTER);
-    image(howToThreeIm, width / 2, height / 2);
-    // choosingHowToUseFireExtinguisherButtons[6].display();
-  }
-  if (choosingHowToUseFireExtinguisherState == 7) // sweep
-  {
-    imageMode(CENTER);
-    image(howToSweepIm, width / 2, height / 8);
-    // choosingHowToUseFireExtinguisherButtons[3].display();
-  }
-  if (choosingHowToUseFireExtinguisherState == 9) // continue in sweep
-  {
-    imageMode(CENTER);
-    image(howToCorrectIm, width / 2, height / 2);
-    // choosingHowToUseFireExtinguisherButtons[7].display();
-  }
-  if (choosingHowToUseFireExtinguisherState == 10)
-  {
-    imageMode(CENTER);
-    image(howToWrongIm, width / 2, height / 2);
-  }
-  if (choosingHowToUseFireExtinguisherState == 11) // try again state
-  {
-    choosingHowToUseFireExtinguisherState = 0;
-  }
-  if (choosingHowToUseFireExtinguisherState == 12) // continue 'pass' state
-  {
-    state = 4;
-  }
-  */
 
   imageMode(CENTER);
   if(choosingHowToUseFireExtinguisherState == 0)
@@ -620,6 +476,7 @@ void showOptionsForChoosingHowToUseFireExinguisher()
   {
     image(howToUseFireExtinguisherWrongIm, width / 2, height / 2);
   }
+  
 }
 
 
@@ -627,34 +484,26 @@ void showOptionsForChoosingHowToUseFireExinguisher()
 
 void showOptionsForSearchingForFireExit()
 {
-  for (int i = 0; i < choosingTheExitPathButtons.length; i++)
-  {
-    choosingTheExitPathButtons[i].display();
-  }
 
   if(choosingPathState == threeDoorsState)
   {
     imageMode(CENTER);
     image(threeDoorsOptionsIm, width / 2, height / 2);
-    // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingPathState == threeDoorsBridgeState)
   {
     imageMode(CENTER);
     image(threeDoorsBridgeIm, width / 2, height / 2);
-    // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingPathState == threeDoorsHallwayState)
   {
     imageMode(CENTER);
     image(threeDoorsHallwayIm, width / 2, height / 2);
-    // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
   if (choosingPathState == threeDoorsExitSignState)
   {
     imageMode(CENTER);
     image(threeDoorsExitIm, width / 2, height / 2);
-    // choosingFireExtinguisherOptionsButtons[4].display(); // try again button
   }
 
   if (choosingPathState == threeDoorsTryAgainState)
@@ -819,7 +668,7 @@ void mouseClicked()
     println("continue button clicked");
     state = 4;
 
-
+  }
   // which exit path to take options buttons
 
   else if (mouseX >= choosingTheExitPathButtons[0].x && mouseX <= (choosingTheExitPathButtons[0].x + choosingTheExitPathButtons[0].buttonWidth) && mouseY >= choosingTheExitPathButtons[0].y && mouseY <= (choosingTheExitPathButtons[0].y + choosingTheExitPathButtons[0].buttonHeight)  && state == choosingTheCorrectExitPathScenarioState)

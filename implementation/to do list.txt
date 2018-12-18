@@ -1,5 +1,0 @@
-- change the continue button design in the choosing the fire extinguisher scene--> place it in a different position other than the try again button (more to the right maybe)
-- get rid of the try again button in the phone call scene
-- change the video to the animated with fire and voiceover one (we need the voiceover)
-
--- add a boolean to the button class to show the buttons if true and not if false, because once the program starts they are all created
